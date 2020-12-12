@@ -5,31 +5,53 @@
  */
 package Services;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author El Pitagoras
  */
-public class VentaProducto implements IServicio{
+public class VentaProducto implements IServicio {
+
+    private LinkedList<ProductoFisico> listaProducto;
     private double valorTotal;
-    
-    @Override
-    public String getServicio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    public VentaProducto() {
+        listaProducto = new LinkedList<>();
+    }
+
+    private void actualizarPrecio() {
+        valorTotal = 0;
+        double valor = 0;
+        for (ProductoFisico p : listaProducto) {
+            valor += p.getCantidad() * p.getProducto().getValorUnidad();
+        }
+        valorTotal = valor;
+    }
+
+    public void añadirProducto(ProductoFisico prod) {
+        listaProducto.add(prod);
+        actualizarPrecio();
     }
 
     @Override
-    public String getTipo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getServicio() {
+        return "Venta de Producto";
+    }
+
+    @Override
+    public String getCaracteristica() {
+        return "";
     }
 
     @Override
     public double getValor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return valorTotal;
     }
 
     @Override
     public double getComision() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
     }
-    
+
 }

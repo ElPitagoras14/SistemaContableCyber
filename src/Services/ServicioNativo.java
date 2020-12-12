@@ -15,24 +15,29 @@ public class ServicioNativo implements IServicio{
     private TipoServicioNativo tipo;
     private double valorTotal;
 
-    @Override
-    public String getServicio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ServicioNativo(TipoServicioNativo tipo, double valorTotal) {
+        this.tipo = tipo;
+        this.valorTotal = valorTotal;
     }
 
     @Override
-    public String getTipo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getServicio() {
+        return "Servicio Nativo";
+    }
+
+    @Override
+    public String getCaracteristica() {
+        return tipo.toString();
     }
 
     @Override
     public double getValor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return valorTotal;
     }
 
     @Override
     public double getComision() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
     }
     
 }

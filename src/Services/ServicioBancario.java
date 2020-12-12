@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Enums.Banco;
 import Enums.TipoCuenta;
 
 /**
@@ -12,7 +13,28 @@ import Enums.TipoCuenta;
  * @author El Pitagoras
  */
 public abstract class ServicioBancario implements IServicio{
-    private String banco;
-    private TipoCuenta tipoCuenta;
+    protected Banco banco;
+    protected TipoCuenta tipoCuenta;
     private double valorTotal;
+
+    public ServicioBancario(Banco banco, TipoCuenta tipoCuenta, double valorTotal) {
+        this.banco = banco;
+        this.tipoCuenta = tipoCuenta;
+        this.valorTotal = valorTotal;
+    }
+    
+    @Override
+    public String getServicio() {
+        return "Servicio Bancario";
+    }
+
+    @Override
+    public double getValor() {
+        return valorTotal + getComision();
+    }
+    
+    @Override
+    public double getComision() {
+        return Math.floor(valorTotal / 50) * 0.25;
+    }
 }
