@@ -5,30 +5,22 @@
  */
 package Services;
 
+import Enums.Banco;
+import Enums.TipoCuenta;
+
 /**
  *
  * @author El Pitagoras
  */
 public class Retiro extends ServicioBancario{
 
-    @Override
-    public String getServicio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getTipo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double getValor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double getComision() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Retiro(Banco banco, TipoCuenta tipoCuenta, double valorTotal) {
+        super(banco, tipoCuenta, valorTotal);
     }
     
+
+    @Override
+    public String getCaracteristica() {
+        return "Retiro Banco: " + banco.toString() + " Cta " + tipoCuenta.toString();
+    }
 }

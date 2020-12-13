@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Services;
+package Enums;
 
 /**
  *
  * @author El Pitagoras
  */
-public interface IServicio {
-    String getServicio();
-    String getCaracteristica();
-    double getValor();
-    double getComision();
+public enum Banco {
+    PICHINCHA,
+    GUAYAQUIL,
+    PACIFICO
 }

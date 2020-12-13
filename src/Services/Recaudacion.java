@@ -11,28 +11,38 @@ import Enums.TipoRecaudacion;
  *
  * @author El Pitagoras
  */
-public class Recaudacion implements IServicio{
+public class Recaudacion implements IServicio {
+
     private TipoRecaudacion tipo;
     private double valorTotal;
 
-    @Override
-    public String getServicio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Recaudacion(TipoRecaudacion tipo, double valorTotal) {
+        this.tipo = tipo;
+        this.valorTotal = valorTotal;
     }
 
     @Override
-    public String getTipo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getServicio() {
+        return "Recaudacion";
+    }
+
+    @Override
+    public String getCaracteristica() {
+        return tipo.toString();
     }
 
     @Override
     public double getValor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return valorTotal;
     }
 
     @Override
     public double getComision() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (valorTotal < 100) {
+            return 0.50;
+        } else {
+            return Math.floor(valorTotal / 50) * 0.25;
+        }
     }
-    
+
 }
