@@ -12,29 +12,60 @@ import Enums.TipoRecarga;
  *
  * @author El Pitagoras
  */
-public class Recarga implements IServicio{
+public class Recarga implements IServicio {
+
     private Operadora operadora;
     private String numero;
     private TipoRecarga tipo;
     private double valorTotal;
 
-    @Override
-    public String getServicio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Recarga(Operadora operadora, String numero, TipoRecarga tipo, double valorTotal) {
+        this.operadora = operadora;
+        this.numero = numero;
+        this.tipo = tipo;
+        this.valorTotal = valorTotal;
     }
 
     @Override
-    public String getTipo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getServicio() {
+        return "Recarga";
+    }
+
+    @Override
+    public String getCaracteristica() {
+        return tipo.toString();
     }
 
     @Override
     public double getValor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return valorTotal;
     }
 
     @Override
     public double getComision() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch (operadora) {
+            case MOVISTAR:
+            case CLARO:
+            case CNT:
+            case TUENTI:
+                if (valorTotal < 3) {
+                    return valorTotal * 0.10;
+                } else if (valorTotal == 3){
+                    return 0.25;
+                } else if (valorTotal == 5) {
+                    return 0.40;
+                } else {
+                    return valorTotal * 0.10;
+                }
+            case DIRECTV:
+                if (valorTotal < 10) {
+                    return 0.40;
+                } else if (valorTotal < 15){
+                    return 0.50;
+                } else {
+                    return 1;
+                }
+        }
+        return 0;
     }
 }

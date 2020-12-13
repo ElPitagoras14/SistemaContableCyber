@@ -5,31 +5,23 @@
  */
 package Services;
 
+import Enums.Banco;
+import Enums.TipoCuenta;
+
 /**
  *
  * @author El Pitagoras
  */
 public class Deposito extends ServicioBancario{
     private String numeroCuenta;
+
+    public Deposito(String numeroCuenta, Banco banco, TipoCuenta tipoCuenta, double valorTotal) {
+        super(banco, tipoCuenta, valorTotal);
+        this.numeroCuenta = numeroCuenta;
+    }
     
     @Override
-    public String getServicio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getCaracteristica() {
+        return "Deposito Banco: " + banco.toString() + " Cta " + tipoCuenta.toString() + "\nCta: " + numeroCuenta;
     }
-
-    @Override
-    public String getTipo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double getValor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double getComision() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
