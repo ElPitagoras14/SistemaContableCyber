@@ -7,24 +7,14 @@ package controladores;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
  *
  * @author El Pitagoras
  */
-public class PrincipalController implements Initializable {
-
-    @FXML
-    private Button btnRecarga;
-    @FXML
-    private Button btnServiciosBancarios;
-    @FXML
-    private Button btnServiciosNativos;
+public class VentaProductosController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -33,17 +23,5 @@ public class PrincipalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    @FXML
-    private void recargas(MouseEvent event) {
-    }
-
-    @FXML
-    private void serviciosBancarios(MouseEvent event) {
-    }
-
-    @FXML
-    private void serviciosNativos(MouseEvent event) {
-    }
     
 }
