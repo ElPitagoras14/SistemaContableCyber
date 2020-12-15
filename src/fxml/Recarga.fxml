@@ -15,12 +15,12 @@
 
 <AnchorPane fx:id="pantalla" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.RecargaController">
    <children>
-      <Button fx:id="btnConfirmar" layoutX="643.0" layoutY="523.0" mnemonicParsing="false" text="Confirmar">
+      <Button fx:id="btnConfirmar" layoutX="643.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#confirmar" text="Confirmar">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnAtras" layoutX="552.0" layoutY="523.0" mnemonicParsing="false" text="Atras">
+      <Button fx:id="btnAtras" layoutX="552.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#retroceder" text="Atras">
          <font>
             <Font size="14.0" />
          </font>
@@ -86,14 +86,14 @@
             </TextField>
             <VBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <children>
-                  <RadioButton fx:id="btnNormal" mnemonicParsing="false" text="Normal">
+                  <RadioButton fx:id="btnNormal" mnemonicParsing="false" onMouseClicked="#selNormal" selected="true" text="Normal">
                      <font>
                         <Font size="14.0" />
                      </font>
                      <padding>
                         <Insets bottom="5.0" top="5.0" />
                      </padding></RadioButton>
-                  <RadioButton fx:id="btnIlimitada" mnemonicParsing="false" text="Ilimitada">
+                  <RadioButton fx:id="btnIlimitada" mnemonicParsing="false" onMouseClicked="#selIlimitada" text="Ilimitada">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -102,7 +102,7 @@
                      </padding></RadioButton>
                </children>
             </VBox>
-            <TextField fx:id="txtValor" prefWidth="180.0" promptText="0.00" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <TextField fx:id="txtValor" onKeyReleased="#actualizarValores" prefWidth="180.0" promptText="0.00" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>

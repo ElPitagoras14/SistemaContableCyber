@@ -15,16 +15,28 @@ import java.util.LinkedList;
 public class Sistema {
     public static Sistema sistema;
     private LinkedList<Resumen> listaResumenes;
+    private Resumen resumenActual;
+    private Transaccion transaccionActual;
     
     private Sistema() {
         
     }
     
-    public Sistema getSistema() {
+    public static Sistema getSistema() {
         if (sistema == null) {
             sistema = new Sistema();
         }
         return sistema;
     }
+
+    public Resumen getResumenActual() {
+        return resumenActual;
+    }
+
+    public Transaccion getTransaccionActual() {
+        return transaccionActual;
+    }
+    
+    
     
 }
