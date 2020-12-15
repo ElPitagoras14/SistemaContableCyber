@@ -17,13 +17,15 @@ public class Recarga implements IServicio {
     private Operadora operadora;
     private String numero;
     private TipoRecarga tipo;
-    private double valorTotal;
+    private double valor;
+    private double comision;
 
-    public Recarga(Operadora operadora, String numero, TipoRecarga tipo, double valorTotal) {
+    public Recarga(Operadora operadora, String numero, TipoRecarga tipo, double valorTotal, double comision) {
         this.operadora = operadora;
         this.numero = numero;
         this.tipo = tipo;
-        this.valorTotal = valorTotal;
+        this.valor = valorTotal;
+        this.comision = comision;
     }
 
     @Override
@@ -38,29 +40,33 @@ public class Recarga implements IServicio {
 
     @Override
     public double getValor() {
-        return valorTotal;
+        return valor;
     }
 
     @Override
     public double getComision() {
-        switch (operadora) {
+        return comision;
+    }
+    
+    public static double getComision(Operadora oper, double valor) {
+        switch (oper) {
             case MOVISTAR:
             case CLARO:
             case CNT:
             case TUENTI:
-                if (valorTotal < 3) {
-                    return valorTotal * 0.10;
-                } else if (valorTotal == 3){
+                if (valor < 3) {
+                    return valor * 0.10;
+                } else if (valor == 3){
                     return 0.25;
-                } else if (valorTotal == 5) {
+                } else if (valor == 5) {
                     return 0.40;
                 } else {
-                    return valorTotal * 0.10;
+                    return valor * 0.10;
                 }
             case DIRECTV:
-                if (valorTotal < 10) {
+                if (valor < 10) {
                     return 0.40;
-                } else if (valorTotal < 15){
+                } else if (valor < 15){
                     return 0.50;
                 } else {
                     return 1;
