@@ -12,6 +12,6 @@ package Enums;
 public enum TipoCuenta {
     AHORRO,
     CORRIENTE,
-    PAGOEFECTIVO,
+    PAGO_EFECTIVO,
     AMIGA
 }

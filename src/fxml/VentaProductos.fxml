@@ -12,14 +12,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.VentaProductosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.VentaProductosController">
    <children>
-      <Button layoutX="643.0" layoutY="523.0" mnemonicParsing="false" text="Confirmar">
+      <Button fx:id="btnConfirmar" layoutX="643.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#confirmar" text="Confirmar">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="552.0" layoutY="523.0" mnemonicParsing="false" text="Atras">
+      <Button fx:id="btnAtras" layoutX="552.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#retroceder" text="Atras">
          <font>
             <Font size="14.0" />
          </font>
@@ -50,12 +50,12 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField prefWidth="150.0" promptText="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <TextField fx:id="txtCantidad" prefWidth="150.0" promptText="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField prefWidth="150.0" promptText="001" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+            <TextField fx:id="IDProducto" prefWidth="150.0" promptText="001" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                <font>
                   <Font size="14.0" />
                </font>
@@ -72,7 +72,7 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <TableView layoutX="43.0" layoutY="207.0" prefHeight="202.0" prefWidth="682.0">
+      <TableView fx:id="tablaPrincipal" layoutX="43.0" layoutY="207.0" prefHeight="202.0" prefWidth="682.0">
         <columns>
           <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Id Producto" />
           <TableColumn editable="false" prefWidth="137.0" sortable="false" text="Nombre" />
@@ -84,12 +84,12 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button layoutX="394.0" layoutY="126.0" mnemonicParsing="false" text="Añadir Producto">
+      <Button fx:id="btnAñadirProducto" layoutX="394.0" layoutY="126.0" mnemonicParsing="false" text="Añadir Producto">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <TextField editable="false" layoutX="595.0" layoutY="439.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="130.0" promptText="0.00">
+      <TextField fx:id="txtValorTotal" editable="false" layoutX="595.0" layoutY="439.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="130.0" promptText="0.00">
          <font>
             <Font size="16.0" />
          </font></TextField>

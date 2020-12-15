@@ -7,14 +7,18 @@ package controladores;
 
 import Enums.Operadora;
 import Enums.TipoRecarga;
+import Main.App;
 import Services.IServicio;
 import Services.Recarga;
 import System.Sistema;
 import System.Validaciones;
+import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -75,26 +79,35 @@ public class RecargaController implements Initializable {
 
     @FXML
     private void logicaPantalla(KeyEvent ev) {
+        try{
         switch (ev.getCode()) {
             case ESCAPE:
-                volverMenu();
+                volverMenu((Event) ev);
                 break;
             case ENTER:
                 crearServicio();
-                volverMenu();
+                volverMenu((Event) ev);
                 break;
+        }
+        }catch(IOException error)
+        {
+            System.out.println("error");
         }
     }
 
     @FXML
     private void retroceder(MouseEvent ev) {
-        volverMenu();
+        try {
+            volverMenu((Event) ev);
+        } catch (IOException ex) {
+            Logger.getLogger(RecargaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
-    private void confirmar(MouseEvent ev) {
+    private void confirmar(MouseEvent ev) throws IOException {
         crearServicio();
-        volverMenu();
+        volverMenu((Event) ev);
     }
 
     @FXML
@@ -124,8 +137,8 @@ public class RecargaController implements Initializable {
         }
     }
 
-    private void volverMenu() {
-
+    private void volverMenu(Event e) throws IOException {
+        App.cambiarEscena("Principal", e);
     }
 
     private void crearServicio() {

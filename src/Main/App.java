@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 /**
  *
  * @author El Pitagoras
- * @param args the command line arguments
  */
 public class App extends Application {
     
@@ -26,7 +25,7 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("principal"));
+        scene = new Scene(loadFXML("Principal"));
         stage.setScene(scene);
         stage.show();
     }
@@ -42,9 +41,9 @@ public class App extends Application {
     
      public static void cambiarEscena(String fxml, Event event) throws IOException {
         Parent root = loadFXML(fxml);
-        Scene scene = new Scene(root);
+        Scene escena = new Scene(root);
         Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        appStage.setScene(scene);
+        appStage.setScene(escena);
         appStage.toFront();
         appStage.show();
     }

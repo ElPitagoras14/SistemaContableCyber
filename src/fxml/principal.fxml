@@ -2,7 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -13,24 +14,38 @@
             <Font name="Helvetica" size="30.0" />
          </font>
       </Text>
-      <VBox focusTraversable="true" layoutX="32.0" layoutY="82.0" prefHeight="408.0" prefWidth="204.0">
+      <FlowPane layoutX="26.0" layoutY="86.0" prefHeight="355.0" prefWidth="744.0">
          <children>
-            <Button fx:id="btnRecarga" mnemonicParsing="false" onMouseClicked="#recargas" prefHeight="105.0" prefWidth="204.0" text="Recargas">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnServiciosBancarios" mnemonicParsing="false" onMouseClicked="#serviciosBancarios" prefHeight="117.0" prefWidth="204.0" text="Servicios Bancarios" textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
             <Button fx:id="btnServiciosNativos" mnemonicParsing="false" onMouseClicked="#serviciosNativos" prefHeight="133.0" prefWidth="204.0" text="Servicios Nativos" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="25.0" />
                </font>
             </Button>
+            <Button fx:id="btnRecarga" mnemonicParsing="false" onMouseClicked="#recargas" prefHeight="133.0" prefWidth="204.0" text="Recargas">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnServiciosBancarios" mnemonicParsing="false" onMouseClicked="#serviciosBancarios" prefHeight="135.0" prefWidth="204.0" text="Servicios Bancarios" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnRecaudacion" mnemonicParsing="false" onMouseClicked="#recaudacion" prefHeight="146.0" prefWidth="204.0" text="Recaudación">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnVender" mnemonicParsing="false" onMouseClicked="#aVender" prefHeight="147.0" prefWidth="206.0" text="Venta de Productos" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
          </children>
-      </VBox>
+      </FlowPane>
+      <Circle fill="#3a4b5b" layoutX="50.0" layoutY="535.0" radius="24.0" stroke="RED" strokeType="INSIDE" />
+      <Circle fill="#3a4b5b" layoutX="122.0" layoutY="559.0" radius="24.0" stroke="RED" strokeType="INSIDE" />
+      <Circle fill="#3a4b5b" layoutX="182.0" layoutY="511.0" radius="24.0" stroke="RED" strokeType="INSIDE" />
+      <Circle fill="#3a4b5b" layoutX="239.0" layoutY="559.0" radius="24.0" stroke="RED" strokeType="INSIDE" />
    </children>
 </AnchorPane>

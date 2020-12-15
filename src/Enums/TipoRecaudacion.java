@@ -9,6 +9,7 @@ package Enums;
  *
  * @author El Pitagoras
  */
-public class TipoRecaudacion {
-    
+public enum TipoRecaudacion {
+    no,hay,nada,vuelva,pronto;
+            
 }
