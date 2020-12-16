@@ -5,37 +5,38 @@
  */
 package Services.Producto;
 
-import java.util.LinkedList;
+import java.util.HashMap;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  *
  * @author El Pitagoras
  */
 public class ProductoPortada {
-    private int id;
-    private String nombre;
-    private double valorUnidad;
+    private SimpleStringProperty id;
+    private SimpleStringProperty nombre;
+    private SimpleDoubleProperty valorUnidad;
 
-    public ProductoPortada(int id, String nombre, double valorUnidad) {
-        this.id = id;
-        this.nombre = nombre;
-        this.valorUnidad = valorUnidad;
+    public ProductoPortada(String id, String nombre, double valorUnidad) {
+        this.id = new SimpleStringProperty(id);
+        this.nombre = new SimpleStringProperty(nombre);
+        this.valorUnidad = new SimpleDoubleProperty(valorUnidad);
     }
        
-    public static LinkedList<ProductoPortada> cargarProductos(String path) {
+    public static HashMap<String, ProductoPortada> cargarProductos(String path) {
         return null;
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return id.get();
     }
 
     public String getNombre() {
-        return nombre;
+        return nombre.get();
     }
 
     public double getValorUnidad() {
-        return valorUnidad;
+        return valorUnidad.get();
     }
-
 }

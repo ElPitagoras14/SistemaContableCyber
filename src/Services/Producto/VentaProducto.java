@@ -17,8 +17,9 @@ public class VentaProducto implements IServicio {
     private LinkedList<ProductoFisico> listaProducto;
     private double valorTotal;
 
-    public VentaProducto() {
-        listaProducto = new LinkedList<>();
+    public VentaProducto(LinkedList<ProductoFisico> listaProducto) {
+        this.listaProducto = listaProducto;
+        actualizarPrecio();
     }
 
     private void actualizarPrecio() {
@@ -28,11 +29,6 @@ public class VentaProducto implements IServicio {
             valor += p.getCantidad() * p.getProducto().getValorUnidad();
         }
         valorTotal = valor;
-    }
-
-    public void añadirProducto(ProductoFisico prod) {
-        listaProducto.add(prod);
-        actualizarPrecio();
     }
 
     @Override
