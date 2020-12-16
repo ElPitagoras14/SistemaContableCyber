@@ -1,5 +1,7 @@
 package System;
 
+import Services.Producto.ProductoPortada;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /*
@@ -7,21 +9,23 @@ import java.util.LinkedList;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author El Pitagoras
  */
 public class Sistema {
+
     public static Sistema sistema;
+
+    private HashMap<String, ProductoPortada> mapaProductos;
     private LinkedList<Resumen> listaResumenes;
     private Resumen resumenActual;
     private Transaccion transaccionActual;
-    
+
     private Sistema() {
         transaccionActual = new Transaccion();
     }
-    
+
     public static Sistema getSistema() {
         if (sistema == null) {
             sistema = new Sistema();
@@ -37,6 +41,8 @@ public class Sistema {
         return transaccionActual;
     }
     
-    
-    
+    public ProductoPortada obtenerProducto(String id) {
+        return mapaProductos.get(id);
+    }
+
 }
