@@ -14,11 +14,10 @@ import Enums.TipoCuenta;
  */
 public class Retiro extends ServicioBancario{
 
-    public Retiro(Banco banco, TipoCuenta tipoCuenta, double valorTotal) {
-        super(banco, tipoCuenta, valorTotal);
+    public Retiro(Banco banco, TipoCuenta tipoCuenta, double valor, double comision) {
+        super(banco, tipoCuenta, valor, comision);
     }
     
-
     @Override
     public String getCaracteristica() {
         return "Retiro Banco: " + banco.toString() + " Cta " + tipoCuenta.toString();

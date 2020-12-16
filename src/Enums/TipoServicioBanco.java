@@ -9,9 +9,8 @@ package Enums;
  *
  * @author El Pitagoras
  */
-public enum Banco {
-    PICHINCHA,
-    GUAYAQUIL,
-    PACIFICO,
+public enum TipoServicioBanco {
+    DEPOSITO,
+    RETIRO,
     OTROS
 }
