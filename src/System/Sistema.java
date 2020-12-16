@@ -1,5 +1,6 @@
 package System;
 
+import FileResources.Serializar;
 import Services.Producto.ProductoPortada;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -21,9 +22,21 @@ public class Sistema {
     private LinkedList<Resumen> listaResumenes;
     private Resumen resumenActual;
     private Transaccion transaccionActual;
+    private Transaccion[] arregloTransaccion;
+    
+    private Serializar<Resumen> serResumen;
 
     private Sistema() {
         transaccionActual = new Transaccion();
+        arregloTransaccion = new Transaccion[3];
+        
+        serResumen = new Serializar<>();
+        listaResumenes = serResumen.deserializar("Historico/historico.ser");
+        if (listaResumenes.size() > 0) {
+            resumenActual = listaResumenes.getLast();
+        }
+        resumenActual = new Resumen();
+        listaResumenes.add(resumenActual);
     }
 
     public static Sistema getSistema() {
@@ -31,6 +44,10 @@ public class Sistema {
             sistema = new Sistema();
         }
         return sistema;
+    }
+    
+    public void salvarResumenes() {
+        serResumen.serializar(listaResumenes, "Historico/historico.ser");
     }
 
     public Resumen getResumenActual() {
@@ -41,8 +58,20 @@ public class Sistema {
         return transaccionActual;
     }
     
+    public void setTransaccionActual(Transaccion t) {
+        transaccionActual = t;
+    }
+    
     public ProductoPortada obtenerProducto(String id) {
         return mapaProductos.get(id);
+    }
+    
+    public Transaccion getTransaccion(int id) {
+        return arregloTransaccion[id];
+    }
+    
+    public void setTransaccion(Transaccion t, int id) {
+        arregloTransaccion[id] = t;
     }
 
 }

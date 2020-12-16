@@ -41,7 +41,6 @@ public class Serializar<E> implements ManejoArchivos<E> {
         } catch (ClassNotFoundException ex) {
             System.out.println("No hay dicha clase");
         }
-
         return lista;
     }
 }
