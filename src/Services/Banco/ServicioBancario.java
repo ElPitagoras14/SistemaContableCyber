@@ -13,17 +13,20 @@ import Services.IServicio;
  *
  * @author El Pitagoras
  */
-public abstract class ServicioBancario implements IServicio{
+public abstract class ServicioBancario implements IServicio {
+
     protected Banco banco;
     protected TipoCuenta tipoCuenta;
-    private double valorTotal;
+    private double valor;
+    private double comision;
 
-    public ServicioBancario(Banco banco, TipoCuenta tipoCuenta, double valorTotal) {
+    public ServicioBancario(Banco banco, TipoCuenta tipoCuenta, double valor, double comision) {
         this.banco = banco;
         this.tipoCuenta = tipoCuenta;
-        this.valorTotal = valorTotal;
+        this.valor = valor;
+        this.comision = comision;
     }
-    
+
     @Override
     public String getServicio() {
         return "Servicio Bancario";
@@ -31,11 +34,15 @@ public abstract class ServicioBancario implements IServicio{
 
     @Override
     public double getValor() {
-        return valorTotal + getComision();
+        return valor + getComision();
     }
-    
+
     @Override
     public double getComision() {
-        return Math.floor(valorTotal / 50) * 0.25;
+        return comision;
+    }
+
+    public static double getComision(double valor) {
+        return Math.ceil((valor + 1) / 50) * 0.25;
     }
 }

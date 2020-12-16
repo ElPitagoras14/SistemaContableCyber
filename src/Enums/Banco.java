@@ -12,5 +12,6 @@ package Enums;
 public enum Banco {
     PICHINCHA,
     GUAYAQUIL,
-    PACIFICO
+    PACIFICO,
+    OTROS
 }

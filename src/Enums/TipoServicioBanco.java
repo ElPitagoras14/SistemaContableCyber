@@ -9,6 +9,8 @@ package Enums;
  *
  * @author El Pitagoras
  */
-public enum TipoRecaudacion {
-    BELCORP 
+public enum TipoServicioBanco {
+    DEPOSITO,
+    RETIRO,
+    OTROS
 }
