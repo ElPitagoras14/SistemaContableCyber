@@ -14,11 +14,15 @@ import Enums.TipoRecaudacion;
 public class Recaudacion implements IServicio {
 
     private TipoRecaudacion tipo;
-    private double valorTotal;
+    private double valor;
+    private String descripcion;
+    private double comision;
 
-    public Recaudacion(TipoRecaudacion tipo, double valorTotal) {
+    public Recaudacion(TipoRecaudacion tipo, String descripcion, double valor) {
         this.tipo = tipo;
-        this.valorTotal = valorTotal;
+        this.descripcion = descripcion;
+        this.valor = valor;
+        comision = Recaudacion.getComision(valor);
     }
 
     @Override
@@ -33,16 +37,21 @@ public class Recaudacion implements IServicio {
 
     @Override
     public double getValor() {
-        return valorTotal;
+        return valor;
     }
 
     @Override
     public double getComision() {
-        if (valorTotal < 100) {
-            return 0.50;
-        } else {
-            return Math.floor(valorTotal / 50) * 0.25;
-        }
+        return comision;
     }
 
+    public static double getComision(double valor) {
+        if (valor == 0) {
+            return 0;
+        } else if (valor < 100) {
+            return 0.50;
+        } else {
+            return Math.floor(valor / 50) * 0.25;
+        }
+    }
 }
