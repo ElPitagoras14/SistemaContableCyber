@@ -17,14 +17,14 @@ public class Recarga implements IServicio {
     private Operadora operadora;
     private String numero;
     private TipoRecarga tipo;
-    private double valor;
+    private int valor;
     private double comision;
 
-    public Recarga(Operadora operadora, String numero, TipoRecarga tipo, double valorTotal, double comision) {
+    public Recarga(Operadora operadora, String numero, TipoRecarga tipo, int valor, double comision) {
         this.operadora = operadora;
         this.numero = numero;
         this.tipo = tipo;
-        this.valor = valorTotal;
+        this.valor = valor;
         this.comision = comision;
     }
 
@@ -48,7 +48,7 @@ public class Recarga implements IServicio {
         return comision;
     }
     
-    public static double getComision(Operadora oper, double valor) {
+    public static double getComision(Operadora oper, int valor) {
         switch (oper) {
             case MOVISTAR:
             case CLARO:

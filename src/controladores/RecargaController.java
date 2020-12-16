@@ -7,14 +7,18 @@ package controladores;
 
 import Enums.Operadora;
 import Enums.TipoRecarga;
+import Main.App;
 import Services.IServicio;
 import Services.Recarga;
 import System.Sistema;
 import System.Validaciones;
+import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -71,41 +75,47 @@ public class RecargaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         sistema = Sistema.getSistema();
         cmbOperadora.setItems(FXCollections.observableArrayList(Operadora.values()));
+        cmbOperadora.setValue(Operadora.CLARO);
     }
 
     @FXML
     private void logicaPantalla(KeyEvent ev) {
-        switch (ev.getCode()) {
-            case ESCAPE:
-                volverMenu();
-                break;
-            case ENTER:
-                crearServicio();
-                volverMenu();
-                break;
+        try {
+            switch (ev.getCode()) {
+                case ESCAPE:
+                    volverMenu((Event) ev);
+                    break;
+                case ENTER:
+                    crearServicio((Event) ev);
+                    break;
+            }
+        } catch (IOException error) {
+            System.out.println("error");
         }
     }
 
     @FXML
     private void retroceder(MouseEvent ev) {
-        volverMenu();
-    }
-
-    @FXML
-    private void confirmar(MouseEvent ev) {
-        crearServicio();
-        volverMenu();
-    }
-
-    @FXML
-    private void actualizarValores(KeyEvent ev) {
-        double valor = Validaciones.validarPrecio(txtValor.getText());
-        if (valor > 0 && cmbOperadora.getValue() != null) {
-            double comision = Recarga.getComision((Operadora) cmbOperadora.getValue(), valor);
-            txtComision.setText(String.valueOf(comision));
-            txtValorTotal.setText(String.valueOf(valor + comision));
+        try {
+            volverMenu((Event) ev);
+        } catch (IOException ex) {
+            Logger.getLogger(RecargaController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
 
+    @FXML
+    private void confirmar(MouseEvent ev) throws IOException {
+        crearServicio((Event) ev);
+    }
+
+    @FXML
+    private void txtActualizarDatos(KeyEvent ev) {
+        actualizarDatos();
+    }
+    
+    @FXML
+    private void gridActualizarDatos(MouseEvent ev) {
+        actualizarDatos();
     }
 
     @FXML
@@ -113,6 +123,15 @@ public class RecargaController implements Initializable {
         if (btnIlimitada.isSelected()) {
             btnNormal.setSelected(true);
             btnIlimitada.setSelected(false);
+        }
+    }
+    
+    private void actualizarDatos() {
+        int valor = Validaciones.validarPrecioInt(txtValor.getText());
+        if (valor > 0 && cmbOperadora.getValue() != null) {
+            double comision = Recarga.getComision((Operadora) cmbOperadora.getValue(), valor);
+            txtComision.setText(String.valueOf(comision));
+            txtValorTotal.setText(String.format("%.2f", valor + comision));
         }
     }
 
@@ -124,14 +143,22 @@ public class RecargaController implements Initializable {
         }
     }
 
-    private void volverMenu() {
-
+    private void volverMenu(Event e) throws IOException {
+        App.cambiarEscena("Principal", e);
     }
 
-    private void crearServicio() {
+    private void crearServicio(Event ev) throws IOException {
         if (parametrosValidos()) {
-            IServicio r = new Recarga((Operadora) cmbOperadora.getValue(), txtNumero.getText(), obtenerTipo(), Double.parseDouble(txtValor.getText()), Double.parseDouble(txtComision.getText()));
+            IServicio r = new Recarga((Operadora) cmbOperadora.getValue(), txtNumero.getText(), obtenerTipo(), Integer.parseInt(txtValor.getText()), Double.parseDouble(txtComision.getText()));
             sistema.getTransaccionActual().añadirServicio(r);
+            volverMenu(ev);
+        } else {
+            if (Validaciones.validarNumeroDigitos(txtNumero.getText(), 10, true) == null) {
+                System.out.println("Ingrese la cantida de digitos correcta");
+            }
+            if (Validaciones.validarPrecioInt(txtValor.getText()) == 0) {
+                System.out.println("Ingrese un digito entero mayor a 0");
+            }
         }
     }
 
@@ -142,7 +169,7 @@ public class RecargaController implements Initializable {
     private boolean parametrosValidos() {
         boolean operadora = cmbOperadora.getValue() != null;
         String numero = Validaciones.validarNumeroDigitos(txtNumero.getText(), 10, true);
-        double valor = Validaciones.validarPrecio(txtValor.getText());
+        int valor = Validaciones.validarPrecioInt(txtValor.getText());
         return operadora && numero != null && valor > 0;
     }
 }

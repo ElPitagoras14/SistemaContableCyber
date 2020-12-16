@@ -11,6 +11,6 @@ package Enums;
  */
 public enum TipoServicioNativo {
     INVESTIGACION,
-    TIEMPOCOMPU,
+    TIEMPO_COMPU,
     OTROS
 }

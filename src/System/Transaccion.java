@@ -20,6 +20,11 @@ public class Transaccion {
     private String cliente;
     private double valorTotal;
     
+    public Transaccion() {
+        listaServicios = new LinkedList<>();
+        cliente = "SIN DATOS";
+    }
+    
     public Transaccion(String cliente) {
         listaServicios = new LinkedList<>();
         this.cliente = cliente;

@@ -13,14 +13,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.ServiciosBancariosController">
+<AnchorPane fx:id="pantalla" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.ServiciosBancariosController">
    <children>
-      <Button layoutX="643.0" layoutY="523.0" mnemonicParsing="false" text="Confirmar">
+      <Button fx:id="btnConfirmar" layoutX="643.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#confirmar" text="Confirmar">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="552.0" layoutY="523.0" mnemonicParsing="false" text="Atras">
+      <Button fx:id="btnAtras" layoutX="552.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#retroceder" text="Atras">
          <font>
             <Font size="14.0" />
          </font>
@@ -79,19 +79,19 @@
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </Label>
-            <ComboBox nodeOrientation="LEFT_TO_RIGHT" prefWidth="180.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
-            <ComboBox prefWidth="180.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <TextField prefWidth="180.0" promptText="XXXXXXXX" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <ComboBox fx:id="cmbBancos" nodeOrientation="LEFT_TO_RIGHT" prefWidth="180.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+            <ComboBox fx:id="cmbTipoCuenta" prefWidth="180.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <TextField fx:id="txtNumeroCuenta" prefWidth="180.0" promptText="XXXXXXXX" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField prefWidth="180.0" promptText="0.00" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <TextField fx:id="txtValor" prefWidth="180.0" promptText="0.00" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField editable="false" prefWidth="180.0" promptText="0.00" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+            <TextField fx:id="txtComision" editable="false" prefWidth="180.0" promptText="0.00" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                <font>
                   <Font size="14.0" />
                </font>
@@ -106,17 +106,17 @@
             </Label>
             <VBox alignment="CENTER_LEFT" prefWidth="180.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <children>
-                  <RadioButton mnemonicParsing="false" text="Depósito">
+                  <RadioButton fx:id="btnDeposito" mnemonicParsing="false" onMouseClicked="#selDeposito" text="Depósito">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="Retiro">
+                  <RadioButton fx:id="btnRetiro" mnemonicParsing="false" onMouseClicked="#selRetiro" text="Retiro">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="Otros">
+                  <RadioButton fx:id="btnOtros" mnemonicParsing="false" onMouseClicked="#selOtros" text="Otros">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -135,7 +135,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <TextField alignment="CENTER_RIGHT" editable="false" layoutX="544.0" layoutY="194.0" prefWidth="120.0" promptText="0.00">
+      <TextField fx:id="txtValorTotal" alignment="CENTER_RIGHT" editable="false" layoutX="544.0" layoutY="194.0" prefWidth="120.0" promptText="0.00">
          <font>
             <Font size="16.0" />
          </font></TextField>

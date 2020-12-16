@@ -21,14 +21,26 @@ public class Validaciones {
                 return numero;
             }
         } catch (NumberFormatException ex) {
-
+            
         }
         return null;
     }
     
-    public static double validarPrecio (String valor) {
+    public static double validarPrecioDouble (String valor) {
         try {
             double tmp = Double.parseDouble(valor);
+            if (tmp > 0) {
+                return tmp;
+            }
+        } catch (NumberFormatException ex) {
+            
+        }
+        return 0;
+    }
+    
+    public static int validarPrecioInt (String valor) {
+        try {
+            int tmp = Integer.parseInt(valor);
             if (tmp > 0) {
                 return tmp;
             }
