@@ -19,7 +19,7 @@ public class Sistema {
     private Transaccion transaccionActual;
     
     private Sistema() {
-        
+        transaccionActual = new Transaccion();
     }
     
     public static Sistema getSistema() {

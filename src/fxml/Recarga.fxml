@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pantalla" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.RecargaController">
+<AnchorPane fx:id="pantalla" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#logicaPantalla" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.RecargaController">
    <children>
       <Button fx:id="btnConfirmar" layoutX="643.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#confirmar" text="Confirmar">
          <font>
@@ -25,7 +25,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <GridPane layoutX="43.0" layoutY="115.0" prefHeight="294.0" prefWidth="342.0">
+      <GridPane layoutX="43.0" layoutY="115.0" onMouseMoved="#gridActualizarDatos" prefHeight="294.0" prefWidth="342.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="10.0" prefWidth="124.0" />
           <ColumnConstraints fillWidth="false" halignment="LEFT" maxWidth="427.0" minWidth="10.0" prefWidth="206.0" />
@@ -102,7 +102,7 @@
                      </padding></RadioButton>
                </children>
             </VBox>
-            <TextField fx:id="txtValor" onKeyReleased="#actualizarValores" prefWidth="180.0" promptText="0.00" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <TextField fx:id="txtValor" onKeyReleased="#txtActualizarDatos" prefWidth="180.0" promptText="0.00" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
