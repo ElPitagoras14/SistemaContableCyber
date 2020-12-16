@@ -5,10 +5,40 @@
  */
 package Services.Banco;
 
+import Enums.Banco;
+import Services.IServicio;
+
 /**
  *
  * @author El Pitagoras
  */
-public class BancoOtros {
+public class BancoOtros implements IServicio{
+    private double valor;
+    private Banco banco;
+
+    public BancoOtros(Banco banco, double valor) {
+        this.banco = banco;
+        this.valor = valor;
+    }
+
+    @Override
+    public String getServicio() {
+        return "Servicio Bancario";
+    }
+
+    @Override
+    public String getCaracteristica() {
+        return "Otros";
+    }
+
+    @Override
+    public double getValor() {
+        return valor;
+    }
+
+    @Override
+    public double getComision() {
+        return 0;
+    }
     
 }
