@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.ServiciosNativosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#logicaPantalla" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.ServiciosNativosController">
    <children>
       <Button fx:id="btnConfirmar" layoutX="643.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#confirmar" text="Confirmar">
          <font>
@@ -60,7 +60,7 @@
                </font>
             </Label>
             <ComboBox fx:id="cmbTipo" nodeOrientation="LEFT_TO_RIGHT" prefWidth="180.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
-            <TextField fx:id="txtValor" prefWidth="180.0" promptText="0.00" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <TextField fx:id="txtValor" onKeyReleased="#txtActualizarDatos" prefWidth="180.0" promptText="0.00" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>

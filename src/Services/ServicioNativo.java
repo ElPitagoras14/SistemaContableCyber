@@ -14,10 +14,12 @@ import Enums.TipoServicioNativo;
 public class ServicioNativo implements IServicio{
     private TipoServicioNativo tipo;
     private double valorTotal;
+    private String descripcion;
 
-    public ServicioNativo(TipoServicioNativo tipo, double valorTotal) {
+    public ServicioNativo(TipoServicioNativo tipo, String descripcion, double valorTotal) {
         this.tipo = tipo;
         this.valorTotal = valorTotal;
+        this.descripcion = descripcion;
     }
 
     @Override
