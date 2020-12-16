@@ -10,6 +10,5 @@ package Enums;
  * @author El Pitagoras
  */
 public enum TipoRecaudacion {
-    no,hay,nada,vuelva,pronto;
-            
+    BELCORP 
 }
