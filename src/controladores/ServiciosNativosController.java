@@ -7,9 +7,15 @@ package controladores;
 
 import Enums.TipoServicioNativo;
 import Main.App;
+import Services.IServicio;
+import Services.ServicioNativo;
+import System.Sistema;
+import System.Validaciones;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -19,6 +25,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -42,18 +49,43 @@ public class ServiciosNativosController implements Initializable {
     private TextField txtValorTotal;
     @FXML
     private Label nota;
+    
+    private Sistema sistema;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        sistema = Sistema.getSistema();
         cmbTipo.setItems(FXCollections.observableArrayList(TipoServicioNativo.values()));
-    }    
+        cmbTipo.setValue(TipoServicioNativo.INVESTIGACION);
+    }
 
     @FXML
-    private void confirmar(MouseEvent event) {
-        System.out.println("confirmo");
+    private void logicaPantalla(KeyEvent ev) {
+        try {
+            switch (ev.getCode()) {
+                case ESCAPE:
+                    volverMenu((Event) ev);
+                    break;
+                case ENTER:
+                    crearServicio((Event) ev);
+                    break;
+            }
+        } catch (IOException error) {
+            System.out.println("error");
+        }
+    }
+
+    @FXML
+    private void confirmar(MouseEvent ev) throws IOException {
+        crearServicio((Event) ev);
+    }
+    
+    @FXML
+    private void txtActualizarDatos(KeyEvent ev) {
+        actualizarDatos();
     }
 
     @FXML
@@ -64,9 +96,30 @@ public class ServiciosNativosController implements Initializable {
             System.out.println("f");
         }
     }
-    
-     private void volverMenu(Event e) throws IOException {
+
+    private void volverMenu(Event e) throws IOException {
         App.cambiarEscena("Principal", e);
     }
     
+    private void crearServicio(Event ev) throws IOException {
+        if (parametrosValidos()) {
+            IServicio sn = new ServicioNativo((TipoServicioNativo) cmbTipo.getValue(), txtDescripcion.getText(), Validaciones.validarPrecioDouble(txtValor.getText()));
+            sistema.getTransaccionActual().añadirServicio(sn);
+            volverMenu(ev);
+        } else {
+            System.out.println("Ingrese un valor mayor a 0");
+        }
+    }
+    
+    private void actualizarDatos() {
+        double valor = Validaciones.validarPrecioDouble(txtValor.getText());
+        if (valor > 0 && cmbTipo.getValue() != null) {
+            txtValorTotal.setText(String.valueOf(valor));
+        }
+    }
+    
+    private boolean parametrosValidos() {
+        return Validaciones.validarPrecioDouble(txtValor.getText()) > 0;
+    }
+
 }
