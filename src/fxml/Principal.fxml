@@ -1,46 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" onKeyReleased="#logicaPantalla" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.PrincipalController">
    <children>
-      <Circle fill="#3a4b5b" layoutX="50.0" layoutY="535.0" radius="24.0" stroke="RED" strokeType="INSIDE" />
-      <Circle fill="#3a4b5b" layoutX="122.0" layoutY="559.0" radius="24.0" stroke="RED" strokeType="INSIDE" />
-      <Circle fill="#3a4b5b" layoutX="182.0" layoutY="511.0" radius="24.0" stroke="RED" strokeType="INSIDE" />
-      <Circle fill="#3a4b5b" layoutX="239.0" layoutY="559.0" radius="24.0" stroke="RED" strokeType="INSIDE" />
-      <Button fx:id="btnServiciosNativos" layoutX="81.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#serviciosNativos" prefHeight="133.0" prefWidth="204.0" text="Servicios Nativos" textAlignment="CENTER" wrapText="true">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnRecarga" layoutX="285.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#recargas" prefHeight="133.0" prefWidth="204.0" text="Recargas">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnServiciosBancarios" layoutX="489.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#serviciosBancarios" prefHeight="135.0" prefWidth="204.0" text="Servicios Bancarios" textAlignment="CENTER" wrapText="true">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnRecaudacion" layoutX="81.0" layoutY="263.0" mnemonicParsing="false" onMouseClicked="#recaudacion" prefHeight="146.0" prefWidth="204.0" text="Recaudación">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnVender" layoutX="285.0" layoutY="262.0" mnemonicParsing="false" onMouseClicked="#aVender" prefHeight="147.0" prefWidth="206.0" text="Venta de Productos" textAlignment="CENTER" wrapText="true">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Button>
+      <Circle fill="#76b2cf" layoutX="50.0" layoutY="535.0" radius="24.0" stroke="#85b1d8" strokeType="INSIDE" />
+      <Circle fill="#76b2cf" layoutX="122.0" layoutY="559.0" radius="24.0" stroke="#85b1d8" strokeType="INSIDE" />
+      <Circle fill="#76b2cf" layoutX="182.0" layoutY="511.0" radius="24.0" stroke="#85b1d8" strokeType="INSIDE" />
+      <Circle fill="#76b2cf" layoutX="239.0" layoutY="559.0" radius="24.0" stroke="#85b1d8" strokeType="INSIDE" />
       <Label layoutX="43.0" layoutY="30.0" text="Servicios">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
+      <VBox layoutX="53.0" layoutY="125.0" prefHeight="288.0" prefWidth="209.0">
+         <children>
+            <Button fx:id="btnRecarga" mnemonicParsing="false" onMouseClicked="#recargas" prefWidth="200.0" text="Recargas">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnRecaudacion" mnemonicParsing="false" onMouseClicked="#recaudacion" prefWidth="200.0" text="Recaudación">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnVender" mnemonicParsing="false" onMouseClicked="#aVender" prefWidth="200.0" text="Venta de Productos" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnServiciosNativos" mnemonicParsing="false" onMouseClicked="#serviciosNativos" prefWidth="200.0" text="Servicios Nativos" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnServiciosBancarios" mnemonicParsing="false" onMouseClicked="#serviciosBancarios" prefWidth="200.0" text="Servicios Bancarios" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <Label fx:id="txtTransaccion" layoutX="242.0" layoutY="43.0" text="Transacción Actual">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnCerrarTransaccion" layoutX="526.0" layoutY="474.0" mnemonicParsing="false" onMouseClicked="#terminarTransaccion" text="Terminar Transacción">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnVolver" layoutX="403.0" layoutY="474.0" mnemonicParsing="false" onMouseClicked="#atras" text="Volver">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <VBox alignment="TOP_CENTER" layoutX="433.0" layoutY="98.0" prefHeight="360.0" prefWidth="200.0">
+         <children>
+            <Label text="Valor Total">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="txtValorTotal" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" prefWidth="100.0" promptText="0.00">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="Paga con">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="txtPago" alignment="CENTER_RIGHT" maxWidth="100.0" onKeyReleased="#txtActualizarDatos" prefWidth="100.0" promptText="0.00">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="Vuelto">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="txtVuelto" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" prefWidth="100.0" promptText="0.00">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TextField>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

@@ -10,12 +10,10 @@ import Main.App;
 import Services.IServicio;
 import Services.ServicioNativo;
 import System.Sistema;
-import System.Validaciones;
+import System.Validacion;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -103,7 +101,7 @@ public class ServiciosNativosController implements Initializable {
     
     private void crearServicio(Event ev) throws IOException {
         if (parametrosValidos()) {
-            IServicio sn = new ServicioNativo((TipoServicioNativo) cmbTipo.getValue(), txtDescripcion.getText(), Validaciones.validarPrecioDouble(txtValor.getText()));
+            IServicio sn = new ServicioNativo((TipoServicioNativo) cmbTipo.getValue(), txtDescripcion.getText(), Validacion.validarPrecioPositivoDouble(txtValor.getText()));
             sistema.getTransaccionActual().añadirServicio(sn);
             volverMenu(ev);
         } else {
@@ -112,14 +110,14 @@ public class ServiciosNativosController implements Initializable {
     }
     
     private void actualizarDatos() {
-        double valor = Validaciones.validarPrecioDouble(txtValor.getText());
-        if (valor > 0 && cmbTipo.getValue() != null) {
-            txtValorTotal.setText(String.valueOf(valor));
+        double valor = Validacion.validarPrecioPositivoDouble(txtValor.getText());
+        if (valor >= 0 && cmbTipo.getValue() != null) {
+            txtValorTotal.setText(String.format("%.2f", valor));
         }
     }
     
     private boolean parametrosValidos() {
-        return Validaciones.validarPrecioDouble(txtValor.getText()) > 0;
+        return Validacion.validarPrecioPositivoDouble(txtValor.getText()) > 0;
     }
 
 }

@@ -11,7 +11,7 @@ import Main.App;
 import Services.IServicio;
 import Services.Recarga;
 import System.Sistema;
-import System.Validaciones;
+import System.Validacion;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -127,8 +127,8 @@ public class RecargaController implements Initializable {
     }
     
     private void actualizarDatos() {
-        int valor = Validaciones.validarPrecioInt(txtValor.getText());
-        if (valor > 0 && cmbOperadora.getValue() != null) {
+        int valor = Validacion.validarPrecioPositivoInt(txtValor.getText());
+        if (valor >= 0 && cmbOperadora.getValue() != null) {
             double comision = Recarga.getComision((Operadora) cmbOperadora.getValue(), valor);
             txtComision.setText(String.valueOf(comision));
             txtValorTotal.setText(String.format("%.2f", valor + comision));
@@ -153,10 +153,10 @@ public class RecargaController implements Initializable {
             sistema.getTransaccionActual().añadirServicio(r);
             volverMenu(ev);
         } else {
-            if (Validaciones.validarNumeroDigitos(txtNumero.getText(), 10, true) == null) {
+            if (Validacion.validarNumeroDigitos(txtNumero.getText(), 10, true) == null) {
                 System.out.println("Ingrese la cantida de digitos correcta");
             }
-            if (Validaciones.validarPrecioInt(txtValor.getText()) == 0) {
+            if (Validacion.validarPrecioPositivoInt(txtValor.getText()) == 0) {
                 System.out.println("Ingrese un digito entero mayor a 0");
             }
         }
@@ -168,8 +168,8 @@ public class RecargaController implements Initializable {
 
     private boolean parametrosValidos() {
         boolean operadora = cmbOperadora.getValue() != null;
-        String numero = Validaciones.validarNumeroDigitos(txtNumero.getText(), 10, true);
-        int valor = Validaciones.validarPrecioInt(txtValor.getText());
+        String numero = Validacion.validarNumeroDigitos(txtNumero.getText(), 10, true);
+        int valor = Validacion.validarPrecioPositivoInt(txtValor.getText());
         return operadora && numero != null && valor > 0;
     }
 }

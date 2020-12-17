@@ -27,7 +27,6 @@ public class Sistema {
     private Serializar<Resumen> serResumen;
 
     private Sistema() {
-        transaccionActual = new Transaccion();
         arregloTransaccion = new Transaccion[3];
         
         serResumen = new Serializar<>();
@@ -48,6 +47,10 @@ public class Sistema {
     
     public void salvarResumenes() {
         serResumen.serializar(listaResumenes, "Historico/historico.ser");
+    }
+    
+    public void terminarTransaccion(Transaccion t) {
+        resumenActual.añadirTransaccion(t);
     }
 
     public Resumen getResumenActual() {

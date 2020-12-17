@@ -16,12 +16,13 @@ import java.util.LinkedList;
  * @author El Pitagoras
  */
 public class Transaccion implements Serializable{
-    private static int ultimoId;
     private LinkedList<IServicio> listaServicios;
     private String cliente;
     private double valorTotal;
+    private int idTmp;
     
-    public Transaccion() {
+    public Transaccion(int idTmp) {
+        this.idTmp = idTmp;
         listaServicios = new LinkedList<>();
         cliente = "SIN DATOS";
     }
@@ -48,11 +49,6 @@ public class Transaccion implements Serializable{
         }
     }
     
-    public static String obtenerUltimoId() {
-        ultimoId++;
-        return String.format("%010d", ultimoId);
-    }
-    
     private void añadirCosto() {
         valorTotal += listaServicios.getLast().getTotal();
     }
@@ -69,13 +65,19 @@ public class Transaccion implements Serializable{
     public LinkedList<IServicio> getListaServicios() {
         return listaServicios;
     }
+
+    public int getIdTmp() {
+        return idTmp;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
     
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Transaccion ");
-        sb.append(Transaccion.obtenerUltimoId());
-        sb.append(" Fecha: ");
+        sb.append("Transaccion Fecha: ");
         sb.append(LocalDate.now().toString());
         sb.append(" Hora: ");
         sb.append(LocalTime.now().toString());

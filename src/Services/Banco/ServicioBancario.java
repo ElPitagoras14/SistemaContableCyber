@@ -34,7 +34,7 @@ public abstract class ServicioBancario implements IServicio {
 
     @Override
     public double getValor() {
-        return valor + getComision();
+        return valor;
     }
 
     @Override

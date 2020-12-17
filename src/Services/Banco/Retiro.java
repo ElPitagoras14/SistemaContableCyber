@@ -15,7 +15,7 @@ import Enums.TipoCuenta;
 public class Retiro extends ServicioBancario{
 
     public Retiro(Banco banco, TipoCuenta tipoCuenta, double valor, double comision) {
-        super(banco, tipoCuenta, valor, comision);
+        super(banco, tipoCuenta, -valor, comision);
     }
     
     @Override

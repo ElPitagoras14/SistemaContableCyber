@@ -53,11 +53,33 @@ public class MenuController implements Initializable {
     @FXML
     private void iniTran1(MouseEvent event) throws IOException {
         if (sistema.getTransaccion(0) == null) {
-            Transaccion t1 = new Transaccion();
+            Transaccion t1 = new Transaccion(1);
             sistema.setTransaccion(t1, 0);
             sistema.setTransaccionActual(t1);
         }
         sistema.setTransaccionActual(sistema.getTransaccion(0));
+        App.cambiarEscena("Principal", (Event) event);
+    }
+    
+    @FXML
+    private void iniTran2(MouseEvent event) throws IOException {
+        if (sistema.getTransaccion(1) == null) {
+            Transaccion t1 = new Transaccion(2);
+            sistema.setTransaccion(t1, 1);
+            sistema.setTransaccionActual(t1);
+        }
+        sistema.setTransaccionActual(sistema.getTransaccion(1));
+        App.cambiarEscena("Principal", (Event) event);
+    }
+    
+    @FXML
+    private void iniTran3(MouseEvent event) throws IOException {
+        if (sistema.getTransaccion(2) == null) {
+            Transaccion t1 = new Transaccion(3);
+            sistema.setTransaccion(t1, 2);
+            sistema.setTransaccionActual(t1);
+        }
+        sistema.setTransaccionActual(sistema.getTransaccion(2));
         App.cambiarEscena("Principal", (Event) event);
     }
 

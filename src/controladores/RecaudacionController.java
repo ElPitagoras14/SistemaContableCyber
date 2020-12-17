@@ -10,7 +10,7 @@ import Main.App;
 import Services.IServicio;
 import Services.Recaudacion;
 import System.Sistema;
-import System.Validaciones;
+import System.Validacion;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -113,15 +113,15 @@ public class RecaudacionController implements Initializable {
     }
 
     private void actualizarDatos() {
-        double valor = Validaciones.validarPrecioDouble(txtValor.getText());
+        double valor = Validacion.validarPrecioPositivoDouble(txtValor.getText());
         if (valor >= 0) {
             double comision = Recaudacion.getComision(valor);
-            txtComision.setText(String.valueOf(comision));
-            txtValorTotal.setText(String.valueOf(valor + comision));
+            txtComision.setText(String.format("%.2f", comision));
+            txtValorTotal.setText(String.format("%.2f", valor + comision));
         }
     }
 
     private boolean parametrosValidos() {
-        return Validaciones.validarPrecioDouble(txtValor.getText()) > 0;
+        return Validacion.validarPrecioPositivoDouble(txtValor.getText()) > 0;
     }
 }
