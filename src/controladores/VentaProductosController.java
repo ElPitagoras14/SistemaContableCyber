@@ -11,7 +11,7 @@ import Services.Producto.ProductoFisico;
 import Services.Producto.ProductoPortada;
 import Services.Producto.VentaProducto;
 import System.Sistema;
-import System.Validaciones;
+import System.Validacion;
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
@@ -122,7 +122,7 @@ public class VentaProductosController implements Initializable {
     }
     
     private void actualizarDatos() {
-        txtValorTotal.setText(String.valueOf(total));
+        txtValorTotal.setText(String.format("%.2f", total));
     }
 
     private void volverMenu(Event e) throws IOException {
@@ -130,7 +130,7 @@ public class VentaProductosController implements Initializable {
     }
 
     private boolean parametrosValidos() {
-        int cantidad = Validaciones.validarPrecioInt(txtCantidad.getText());
+        int cantidad = Validacion.validarPrecioPositivoInt(txtCantidad.getText());
         ProductoPortada prod = sistema.obtenerProducto(txtId.getText());
         return cantidad > 0 && prod != null;
     }

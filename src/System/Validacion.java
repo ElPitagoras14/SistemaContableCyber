@@ -9,7 +9,7 @@ package System;
  *
  * @author El Pitagoras
  */
-public class Validaciones {
+public class Validacion {
 
     public static String validarNumeroDigitos(String numero, int digitos, boolean opcional) {
         try {
@@ -21,31 +21,40 @@ public class Validaciones {
                 return numero;
             }
         } catch (NumberFormatException ex) {
-            
+
         }
         return null;
     }
-    
-    public static double validarPrecioDouble (String valor) {
+
+    public static double validarPrecioPositivoDouble(String valor) {
         try {
             double tmp = Double.parseDouble(valor);
             if (tmp > 0) {
                 return tmp;
             }
         } catch (NumberFormatException ex) {
-            
+
         }
         return 0;
     }
-    
-    public static int validarPrecioInt (String valor) {
+
+    public static int validarPrecioPositivoInt(String valor) {
         try {
             int tmp = Integer.parseInt(valor);
             if (tmp > 0) {
                 return tmp;
             }
         } catch (NumberFormatException ex) {
-            
+
+        }
+        return 0;
+    }
+
+    public static double validarPrecioDouble(String valor) {
+        try {
+            return Double.parseDouble(valor);
+        } catch (NumberFormatException ex) {
+
         }
         return 0;
     }

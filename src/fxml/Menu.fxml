@@ -7,11 +7,17 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.MenuController">
    <children>
-      <Label layoutX="43.0" layoutY="30.0" text="Menu Principal">
+      <Label layoutX="43.0" layoutY="540.0" text="Creado por ElPitagoras y iGioRojas.">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="43.0" layoutY="30.0" text="Menú Principal">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -27,7 +33,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnTransaccion1" mnemonicParsing="false" onMouseClicked="#iniTran1" text="Transaccion 1" GridPane.halignment="RIGHT">
+            <Button fx:id="btnTransaccion1" mnemonicParsing="false" onMouseClicked="#iniTran1" text="Transacción 1" GridPane.halignment="RIGHT">
                <font>
                   <Font size="18.0" />
                </font>
@@ -35,7 +41,7 @@
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="btnTransaccion2" mnemonicParsing="false" text="Transaccion 2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <Button fx:id="btnTransaccion2" mnemonicParsing="false" onMouseClicked="#iniTran2" text="Transacción 2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -43,7 +49,7 @@
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="btnTransaccion3" mnemonicParsing="false" text="Transaccion 3" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Button fx:id="btnTransaccion3" mnemonicParsing="false" onMouseClicked="#iniTran3" text="Transacción 3" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
@@ -77,5 +83,51 @@
             </Label>
          </children>
       </GridPane>
+      <Label layoutX="43.0" layoutY="560.0" text="Versión 0.8">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Button layoutX="43.0" layoutY="401.0" mnemonicParsing="false" text="Resumen Transacciones">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <VBox layoutX="461.0" layoutY="129.0" prefHeight="248.0" prefWidth="255.0">
+         <children>
+            <Label text="Instrucciones Básicas">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label text="Usa Escape para retroceder a la ventana previa." wrapText="true">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="15.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label text="Usa Enter dentro de un servicio para confirmar el mismo." wrapText="true">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="15.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label text="Puedes tener hasta 3 transacciones de forma simultánea." wrapText="true">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="15.0" top="5.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
