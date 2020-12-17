@@ -5,11 +5,15 @@
  */
 package Services;
 
+import java.io.Serializable;
+
 /**
  *
  * @author El Pitagoras
  */
-public interface IServicio {
+public interface IServicio extends Serializable {
+    
+    public static final long serialVersionUID = 123453L;
 
     String getServicio();
 

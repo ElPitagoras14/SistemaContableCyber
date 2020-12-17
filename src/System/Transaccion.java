@@ -6,6 +6,7 @@
 package System;
 
 import Services.IServicio;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.LinkedList;
@@ -14,7 +15,7 @@ import java.util.LinkedList;
  *
  * @author El Pitagoras
  */
-public class Transaccion {
+public class Transaccion implements Serializable{
     private static int ultimoId;
     private LinkedList<IServicio> listaServicios;
     private String cliente;

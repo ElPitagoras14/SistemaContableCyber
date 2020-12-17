@@ -6,6 +6,7 @@
 package System;
 
 import Services.IServicio;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.LinkedList;
 
@@ -13,7 +14,7 @@ import java.util.LinkedList;
  *
  * @author El Pitagoras
  */
-public class Resumen {
+public class Resumen implements Serializable{
 
     private LinkedList<Transaccion> listaTransacciones;
     private final LocalDate fecha;
