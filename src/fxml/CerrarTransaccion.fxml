@@ -29,7 +29,7 @@
             <Font name="Arial Bold" size="36.0" />
          </font>
       </Label>
-      <TableView fx:id="tablaPrincipal" layoutX="43.0" layoutY="207.0" prefHeight="202.0" prefWidth="682.0">
+      <TableView fx:id="tablaPrincipal" layoutX="43.0" layoutY="207.0" onKeyReleased="#eliminarFila" prefHeight="202.0" prefWidth="682.0">
         <columns>
           <TableColumn fx:id="colServicio" editable="false" prefWidth="75.0" sortable="false" text="Servicio" />
           <TableColumn fx:id="colTipo" editable="false" prefWidth="137.0" sortable="false" text="Tipo" />
@@ -109,5 +109,10 @@
             <Font size="16.0" />
          </font>
       </TextField>
+      <Button fx:id="btnEliminar" layoutX="498.0" layoutY="149.0" mnemonicParsing="false" onMouseClicked="#eliminarFilaBtn" prefHeight="30.0" prefWidth="130.0" text="Eliminar Servicio">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

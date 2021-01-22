@@ -22,6 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -60,9 +61,8 @@ public class CerrarTransaccionController implements Initializable {
     private TextField txtPago;
     @FXML
     private TextField txtVuelto;
-    
+
     private Sistema sistema;
-    
 
     /**
      * Initializes the controller class.
@@ -111,18 +111,36 @@ public class CerrarTransaccionController implements Initializable {
             System.out.println("error");
         }
     }
-    
-    private void añadirProductos() {
-        for (IServicio is: sistema.getTransaccionActual().getListaServicios()) {
-            tablaPrincipal.getItems().add(is);
+
+    @FXML
+    private void eliminarFila(KeyEvent ev) {
+        if (ev.getCode().equals(KeyCode.DELETE)) {
+            eliminarServicio();
         }
-        txtValorTotal.setText(String.format("%.2f",sistema.getTransaccionActual().getValorTotal()));
     }
     
+    @FXML
+    private void eliminarFilaBtn(MouseEvent ev) {
+        eliminarServicio();
+    }
+
+    private void eliminarServicio() {
+        IServicio is = tablaPrincipal.getSelectionModel().getSelectedItem();
+        sistema.getTransaccionActual().eliminarServicio(is);
+        tablaPrincipal.getItems().remove(is);
+    }
+
+    private void añadirProductos() {
+        for (IServicio is : sistema.getTransaccionActual().getListaServicios()) {
+            tablaPrincipal.getItems().add(is);
+        }
+        txtValorTotal.setText(String.format("%.2f", sistema.getTransaccionActual().getValorTotal()));
+    }
+
     private void volverMenu(Event e) throws IOException {
         App.cambiarEscena("Principal", e);
     }
-    
+
     private void iniciarTabla() {
         colServicio.setCellValueFactory(new PropertyValueFactory<>("Servicio"));
         colPrecio.setStyle("-fx-alignment: CENTER;");
@@ -136,21 +154,20 @@ public class CerrarTransaccionController implements Initializable {
         colTotal.setStyle("-fx-alignment: CENTER-RIGHT;");
         tablaPrincipal.setItems(FXCollections.observableArrayList());
     }
-    
+
     private void cerrarTransaccion(Event ev) throws IOException {
         sistema.terminarTransaccion(sistema.getTransaccionActual());
         sistema.setTransaccion(null, sistema.getTransaccionActual().getIdTmp() - 1);
-        volverMenu(ev);
+        App.cambiarEscena("Menu", ev);
     }
-    
+
     private boolean parametrosValidos() {
         return Validacion.validarPrecioDouble(txtVuelto.getText()) > 0;
     }
-    
+
     private void actualizarDatos() {
         double pago = Validacion.validarPrecioPositivoDouble(txtPago.getText());
         double total = Validacion.validarPrecioDouble(txtValorTotal.getText());
-        System.out.println(pago-total);
         txtVuelto.setText(String.valueOf(pago - total));
     }
 }

@@ -53,6 +53,7 @@ public class Sistema {
     }
     
     public void salvarResumenes() {
+        System.out.println(resumenActual);
         serResumen.serializar(listaResumenes, "Historico/historico.ser");
     }
     

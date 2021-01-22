@@ -18,6 +18,8 @@ public class Resumen implements Serializable {
 
     private LinkedList<Transaccion> listaTransacciones;
     private final LocalDate fecha;
+    
+    private double ingresoNeto;
 
     private int cantRecarga;
     private double ingRecarga;
@@ -41,6 +43,7 @@ public class Resumen implements Serializable {
 
     public void addDatosTransaccion(Transaccion t) {
         for (IServicio is : t.getListaServicios()) {
+            ingresoNeto += is.getComision();
             switch (is.getServicio()) {
                 case "Recarga":
                     cantRecarga++;
@@ -68,5 +71,9 @@ public class Resumen implements Serializable {
 
     public LocalDate getFecha() {
         return fecha;
+    }
+    
+    public String toString() {
+        return String.valueOf(listaTransacciones.size());
     }
 }

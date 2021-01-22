@@ -53,35 +53,17 @@ public class MenuController implements Initializable {
 
     @FXML
     private void iniTran1(MouseEvent event) throws IOException {
-        if (sistema.getTransaccion(0) == null) {
-            Transaccion t1 = new Transaccion(1);
-            sistema.setTransaccion(t1, 0);
-            sistema.setTransaccionActual(t1);
-        }
-        sistema.setTransaccionActual(sistema.getTransaccion(0));
-        App.cambiarEscena("Principal", (Event) event);
+        iniciarTransaccion(0, event);
     }
     
     @FXML
     private void iniTran2(MouseEvent event) throws IOException {
-        if (sistema.getTransaccion(1) == null) {
-            Transaccion t1 = new Transaccion(2);
-            sistema.setTransaccion(t1, 1);
-            sistema.setTransaccionActual(t1);
-        }
-        sistema.setTransaccionActual(sistema.getTransaccion(1));
-        App.cambiarEscena("Principal", (Event) event);
+        iniciarTransaccion(1, event);
     }
     
     @FXML
     private void iniTran3(MouseEvent event) throws IOException {
-        if (sistema.getTransaccion(2) == null) {
-            Transaccion t1 = new Transaccion(3);
-            sistema.setTransaccion(t1, 2);
-            sistema.setTransaccionActual(t1);
-        }
-        sistema.setTransaccionActual(sistema.getTransaccion(2));
-        App.cambiarEscena("Principal", (Event) event);
+        iniciarTransaccion(2, event);
     }
 
     private void actualizarDatos() {
@@ -92,6 +74,21 @@ public class MenuController implements Initializable {
     
     private String obtenerDisponibilidad(Transaccion t) {
         return t == null ? "- Sin Cliente" : "- Pendiente";
+    }
+    
+    private void iniciarTransaccion(int id, Event ev) throws IOException {
+        if (sistema.getTransaccion(id) == null) {
+            Transaccion t = new Transaccion(id + 1);
+            sistema.setTransaccion(t, id);
+            sistema.setTransaccionActual(t);
+        }
+        sistema.setTransaccionActual(sistema.getTransaccion(id));
+        App.cambiarEscena("Principal", ev);
+    }
+    
+    @FXML
+    private void resumenHistorico(MouseEvent ev) {
+        sistema.salvarResumenes();
     }
 
 }
