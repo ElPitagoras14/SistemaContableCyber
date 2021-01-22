@@ -58,6 +58,7 @@ public class Transaccion implements Serializable{
         for (IServicio is: listaServicios) {
             sb.append("\t");
             sb.append(is.getResumen());
+            sb.append("\n");
         }
         return sb.toString();
     }
@@ -73,6 +74,10 @@ public class Transaccion implements Serializable{
     public double getValorTotal() {
         return valorTotal;
     }
+
+    public String getCliente() {
+        return cliente;
+    }
     
     @Override
     public String toString() {
@@ -85,7 +90,8 @@ public class Transaccion implements Serializable{
         sb.append(cliente);
         sb.append("\n");
         sb.append(resumenTransacciones());
-        sb.append(String.format("%-30s $%6.2f", "Total", valorTotal));
+        sb.append("\t");
+        sb.append(String.format("%-40s $%6.2f", "Total", valorTotal));
         return sb.toString();
     }
 }

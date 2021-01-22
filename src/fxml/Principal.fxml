@@ -38,7 +38,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnVender" mnemonicParsing="false" onMouseClicked="#aVender" prefWidth="200.0" text="Venta de Productos" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="btnVender" mnemonicParsing="false" onMouseClicked="#venderProductos" prefWidth="200.0" text="Venta de Productos" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
@@ -79,9 +79,9 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <VBox alignment="TOP_CENTER" layoutX="433.0" layoutY="98.0" prefHeight="360.0" prefWidth="200.0">
+      <VBox alignment="TOP_CENTER" layoutX="434.0" layoutY="215.0" prefHeight="115.0" prefWidth="232.0">
          <children>
-            <Label text="Valor Total">
+            <Label text="Costo Actual">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
@@ -101,50 +101,6 @@
                </opaqueInsets>
                <VBox.margin>
                   <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <Label text="Paga con">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets bottom="5.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="txtPago" alignment="CENTER_RIGHT" maxWidth="100.0" onKeyReleased="#txtActualizarDatos" prefWidth="100.0" promptText="0.00">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <Label text="Vuelto">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets bottom="5.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="txtVuelto" alignment="CENTER_RIGHT" editable="false" maxWidth="100.0" prefWidth="100.0" promptText="0.00">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets bottom="5.0" />
                </VBox.margin>
             </TextField>
          </children>

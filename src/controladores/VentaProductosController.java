@@ -45,7 +45,7 @@ public class VentaProductosController implements Initializable {
     @FXML
     private TextField txtId;
     @FXML
-    private TableView tablaPrincipal;
+    private TableView<ProductoFisico> tablaPrincipal;
     @FXML
     private TableColumn<ProductoFisico, String> colId;
     @FXML
@@ -71,12 +71,7 @@ public class VentaProductosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         sistema = Sistema.getSistema();
         total = 0;
-        colId.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
-        colPrecio.setCellValueFactory(new PropertyValueFactory<>("ValorUnidad"));
-        colCantidad.setCellValueFactory(new PropertyValueFactory<>("Cantidad"));
-        colTotal.setCellValueFactory(new PropertyValueFactory<>("Total"));
-        tablaPrincipal.setItems(FXCollections.observableArrayList());
+        iniciarTabla();
     }
     
     @FXML
@@ -139,6 +134,20 @@ public class VentaProductosController implements Initializable {
         IServicio vp = new VentaProducto((LinkedList<ProductoFisico>) tablaPrincipal.getItems());
         sistema.getTransaccionActual().añadirServicio(vp);
         volverMenu(event);
+    }
+    
+    private void iniciarTabla() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        colId.setStyle("-fx-alignment: CENTER;");
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+        colNombre.setStyle("-fx-alignment: CENTER;");
+        colPrecio.setCellValueFactory(new PropertyValueFactory<>("ValorUnidad"));
+        colPrecio.setStyle("-fx-alignment: CENTER-RIGHT;");
+        colCantidad.setCellValueFactory(new PropertyValueFactory<>("Cantidad"));
+        colCantidad.setStyle("-fx-alignment: CENTER-RIGHT;");
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("Total"));
+        colTotal.setStyle("-fx-alignment: CENTER-RIGHT;");
+        tablaPrincipal.setItems(FXCollections.observableArrayList());
     }
 
 }

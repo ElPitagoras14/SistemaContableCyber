@@ -130,8 +130,8 @@ public class RecargaController implements Initializable {
         int valor = Validacion.validarPrecioPositivoInt(txtValor.getText());
         if (valor >= 0 && cmbOperadora.getValue() != null) {
             double comision = Recarga.getComision((Operadora) cmbOperadora.getValue(), valor);
-            txtComision.setText(String.valueOf(comision));
-            txtValorTotal.setText(String.format("%.2f", valor + comision));
+            txtComision.setText(String.format("%.2f", comision));
+            txtValorTotal.setText(String.format("%.2f",valor + comision));
         }
     }
 
@@ -149,7 +149,7 @@ public class RecargaController implements Initializable {
 
     private void crearServicio(Event ev) throws IOException {
         if (parametrosValidos()) {
-            IServicio r = new Recarga((Operadora) cmbOperadora.getValue(), txtNumero.getText(), obtenerTipo(), Integer.parseInt(txtValor.getText()), Double.parseDouble(txtComision.getText()));
+            IServicio r = new Recarga((Operadora) cmbOperadora.getValue(), txtNumero.getText(), obtenerTipo(), Integer.parseInt(txtValor.getText()), Validacion.validarPrecioPositivoDouble(txtComision.getText()));
             sistema.getTransaccionActual().añadirServicio(r);
             volverMenu(ev);
         } else {

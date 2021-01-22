@@ -28,7 +28,8 @@ public class Validacion {
 
     public static double validarPrecioPositivoDouble(String valor) {
         try {
-            double tmp = Double.parseDouble(valor);
+            String newValor = valor.replace(",", ".");
+            double tmp = Double.parseDouble(newValor);
             if (tmp > 0) {
                 return tmp;
             }
@@ -52,7 +53,8 @@ public class Validacion {
 
     public static double validarPrecioDouble(String valor) {
         try {
-            return Double.parseDouble(valor);
+            String newValor = valor.replace(",", ".");
+            return Double.parseDouble(newValor);
         } catch (NumberFormatException ex) {
 
         }

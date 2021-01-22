@@ -2,6 +2,7 @@ package System;
 
 import FileResources.Serializar;
 import Services.Producto.ProductoPortada;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -23,18 +24,17 @@ public class Sistema {
     private Resumen resumenActual;
     private Transaccion transaccionActual;
     private Transaccion[] arregloTransaccion;
+    private LocalDate fechaActual;
     
     private Serializar<Resumen> serResumen;
 
     private Sistema() {
         arregloTransaccion = new Transaccion[3];
+        fechaActual = LocalDate.now();
         
         serResumen = new Serializar<>();
         listaResumenes = serResumen.deserializar("Historico/historico.ser");
-        if (listaResumenes.size() > 0) {
-            resumenActual = listaResumenes.getLast();
-        }
-        resumenActual = new Resumen();
+        resumenActual = obtenerResumenActual();
         listaResumenes.add(resumenActual);
     }
 
@@ -43,6 +43,13 @@ public class Sistema {
             sistema = new Sistema();
         }
         return sistema;
+    }
+    
+    private Resumen obtenerResumenActual() {
+        if(listaResumenes.size() > 0 && listaResumenes.getLast().getFecha().equals(fechaActual)) {
+            return listaResumenes.getLast();
+        }
+        return new Resumen();
     }
     
     public void salvarResumenes() {

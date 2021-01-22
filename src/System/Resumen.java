@@ -14,7 +14,7 @@ import java.util.LinkedList;
  *
  * @author El Pitagoras
  */
-public class Resumen implements Serializable{
+public class Resumen implements Serializable {
 
     private LinkedList<Transaccion> listaTransacciones;
     private final LocalDate fecha;
@@ -39,46 +39,34 @@ public class Resumen implements Serializable{
         listaTransacciones.add(t);
     }
 
-    private void reiniciarDatos() {
-        cantRecarga = 0;
-        ingRecarga = 0;
-        cantServBancarios = 0;
-        ingServBancarios = 0;
-        cantServNativos = 0;
-        ingServNativos = 0;
-        cantRecaudacion = 0;
-        ingRecaudacion = 0;
-        cantProductos = 0;
-        ingProductos = 0;
-    }
-
-    public void actualizarDatos() {
-        reiniciarDatos();
-        for (Transaccion t : listaTransacciones) {
-            for (IServicio is : t.getListaServicios()) {
-                switch (is.getServicio()) {
-                    case "Recarga":
-                        cantRecarga++;
-                        ingRecarga += is.getTotal();
-                        break;
-                    case "Servicios Bancarios":
-                        cantServBancarios++;
-                        ingServBancarios += is.getTotal();
-                        break;
-                    case "Servicios Nativo":
-                        cantServNativos++;
-                        ingServNativos += is.getTotal();
-                        break;
-                    case "Recaudacion":
-                        cantRecaudacion++;
-                        ingRecaudacion += is.getTotal();
-                        break;
-                    case "Venta de Producto":
-                        cantProductos++;
-                        ingProductos += is.getTotal();
-                        break;
-                }
+    public void addDatosTransaccion(Transaccion t) {
+        for (IServicio is : t.getListaServicios()) {
+            switch (is.getServicio()) {
+                case "Recarga":
+                    cantRecarga++;
+                    ingRecarga += is.getTotal();
+                    break;
+                case "Servicios Bancarios":
+                    cantServBancarios++;
+                    ingServBancarios += is.getTotal();
+                    break;
+                case "Servicios Nativo":
+                    cantServNativos++;
+                    ingServNativos += is.getTotal();
+                    break;
+                case "Recaudacion":
+                    cantRecaudacion++;
+                    ingRecaudacion += is.getTotal();
+                    break;
+                case "Venta de Producto":
+                    cantProductos++;
+                    ingProductos += is.getTotal();
+                    break;
             }
         }
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
     }
 }

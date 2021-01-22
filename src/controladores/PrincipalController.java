@@ -54,12 +54,6 @@ public class PrincipalController implements Initializable {
     @FXML
     private Button btnVolver;
 
-    @FXML
-    private TextField txtPago;
-
-    @FXML
-    private TextField txtVuelto;
-
     private Sistema sistema;
 
     /**
@@ -80,7 +74,7 @@ public class PrincipalController implements Initializable {
                     volverMenu((Event) ev);
                     break;
                 case ENTER:
-                    cerrarTransaccion();
+                    cerrarTransaccion((Event) ev);
                     break;
             }
         } catch (IOException error) {
@@ -109,7 +103,7 @@ public class PrincipalController implements Initializable {
     }
 
     @FXML
-    private void aVender(MouseEvent e) throws IOException {
+    private void venderProductos(MouseEvent e) throws IOException {
         App.cambiarEscena("VentaProductos", (Event) e);
     }
 
@@ -120,27 +114,15 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void terminarTransaccion(MouseEvent ev) throws IOException {
-        cerrarTransaccion();
-        volverMenu((Event) ev);
-    }
-
-    @FXML
-    private void txtActualizarDatos(KeyEvent ev) {
-        actualizarDatos();
-    }
-
-    private void actualizarDatos() {
-        double pago = Validacion.validarPrecioPositivoDouble(txtPago.getText());
-        double valorTotal = Validacion.validarPrecioDouble(txtValorTotal.getText());
-        txtVuelto.setText(String.format("%.2f", pago - valorTotal));
-    }
-
-    private void cerrarTransaccion() {
-        sistema.terminarTransaccion(sistema.getTransaccionActual());
-        sistema.setTransaccion(null, sistema.getTransaccionActual().getIdTmp() - 1);
+        cerrarTransaccion((Event) ev);
     }
 
     private void volverMenu(Event ev) throws IOException {
         App.cambiarEscena("Menu", ev);
     }
+    
+    private void cerrarTransaccion(Event ev) throws IOException {
+        App.cambiarEscena("CerrarTransaccion", ev);
+    }
+
 }
