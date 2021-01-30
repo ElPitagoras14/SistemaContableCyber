@@ -32,7 +32,7 @@ public class Transaccion implements Serializable{
         this.cliente = cliente;
     }
     
-    public void añadirServicio(IServicio serv) {
+    public void addServicio(IServicio serv) {
         listaServicios.add(serv);
         añadirCosto();
     }

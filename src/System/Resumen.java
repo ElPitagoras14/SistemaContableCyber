@@ -18,7 +18,7 @@ public class Resumen implements Serializable {
 
     private LinkedList<Transaccion> listaTransacciones;
     private final LocalDate fecha;
-    
+
     private double ingresoNeto;
 
     private int cantRecarga;
@@ -37,11 +37,12 @@ public class Resumen implements Serializable {
         fecha = LocalDate.now();
     }
 
-    public void añadirTransaccion(Transaccion t) {
+    public void addTransaccion(Transaccion t) {
         listaTransacciones.add(t);
+        addDatosTransaccion(t);
     }
 
-    public void addDatosTransaccion(Transaccion t) {
+    private void addDatosTransaccion(Transaccion t) {
         for (IServicio is : t.getListaServicios()) {
             ingresoNeto += is.getComision();
             switch (is.getServicio()) {
@@ -53,7 +54,7 @@ public class Resumen implements Serializable {
                     cantServBancarios++;
                     ingServBancarios += is.getTotal();
                     break;
-                case "Servicios Nativo":
+                case "Servicio Nativo":
                     cantServNativos++;
                     ingServNativos += is.getTotal();
                     break;
@@ -72,8 +73,71 @@ public class Resumen implements Serializable {
     public LocalDate getFecha() {
         return fecha;
     }
-    
+
     public String toString() {
         return String.valueOf(listaTransacciones.size());
     }
+    
+    public double getTotalIngreso() {
+        return ingRecarga + ingServBancarios + ingServNativos + ingRecaudacion + ingProductos;
+    }
+
+    public void añadirDatos(Resumen r) {
+        cantRecarga += r.cantRecarga;
+        ingRecarga += r.ingRecarga;
+        cantServBancarios += r.cantServBancarios;
+        ingServBancarios += r.ingServBancarios;
+        cantServNativos += r.cantServNativos;
+        ingServNativos += r.ingServNativos;
+        cantRecaudacion += r.cantRecaudacion;
+        ingRecaudacion += r.ingRecaudacion;
+        cantProductos += r.cantProductos;
+        ingProductos += r.ingProductos;
+        ingresoNeto += r.ingresoNeto;
+    }
+
+    public double getIngresoNeto() {
+        return ingresoNeto;
+    }
+
+    public int getCantRecarga() {
+        return cantRecarga;
+    }
+
+    public double getIngRecarga() {
+        return ingRecarga;
+    }
+
+    public int getCantServBancarios() {
+        return cantServBancarios;
+    }
+
+    public double getIngServBancarios() {
+        return ingServBancarios;
+    }
+
+    public int getCantServNativos() {
+        return cantServNativos;
+    }
+
+    public double getIngServNativos() {
+        return ingServNativos;
+    }
+
+    public int getCantRecaudacion() {
+        return cantRecaudacion;
+    }
+
+    public double getIngRecaudacion() {
+        return ingRecaudacion;
+    }
+
+    public int getCantProductos() {
+        return cantProductos;
+    }
+
+    public double getIngProductos() {
+        return ingProductos;
+    }
+
 }

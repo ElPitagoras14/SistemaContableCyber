@@ -162,18 +162,18 @@ public class ServiciosBancariosController implements Initializable {
         if (parametrosValidos()) {
             switch (obtenerTipo()) {
                 case DEPOSITO:
-                    IServicio dp = new Deposito(txtNumeroCuenta.getText(),(Banco) cmbBancos.getValue(),(TipoCuenta) cmbTipoCuenta.getValue(), Double.parseDouble(txtValor.getText()), Double.parseDouble(txtComision.getText()));
-                    sistema.getTransaccionActual().añadirServicio(dp);
+                    IServicio dp = new Deposito(txtNumeroCuenta.getText(),(Banco) cmbBancos.getValue(),(TipoCuenta) cmbTipoCuenta.getValue(), Validacion.validarPrecioPositivoDouble(txtValor.getText()), Validacion.validarPrecioPositivoDouble(txtComision.getText()));
+                    sistema.getTransaccionActual().addServicio(dp);
                     volverMenu(ev);
                     break;
                 case RETIRO:
-                    IServicio rt = new Retiro((Banco) cmbBancos.getValue(), (TipoCuenta) cmbTipoCuenta.getValue(), Double.parseDouble(txtValor.getText()), Double.parseDouble(txtComision.getText()));
-                    sistema.getTransaccionActual().añadirServicio(rt);
+                    IServicio rt = new Retiro((Banco) cmbBancos.getValue(), (TipoCuenta) cmbTipoCuenta.getValue(), Validacion.validarPrecioPositivoDouble(txtValor.getText()), Validacion.validarPrecioPositivoDouble(txtComision.getText()));
+                    sistema.getTransaccionActual().addServicio(rt);
                     volverMenu(ev);
                     break;
                 case OTROS:
-                    IServicio ot = new BancoOtros((Banco) cmbBancos.getValue(), Double.parseDouble(txtValor.getText()));
-                    sistema.getTransaccionActual().añadirServicio(ot);
+                    IServicio ot = new BancoOtros((Banco) cmbBancos.getValue(), Validacion.validarPrecioPositivoDouble(txtValor.getText()));
+                    sistema.getTransaccionActual().addServicio(ot);
                     volverMenu(ev);
             }
         }

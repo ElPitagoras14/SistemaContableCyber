@@ -149,8 +149,9 @@ public class RecargaController implements Initializable {
 
     private void crearServicio(Event ev) throws IOException {
         if (parametrosValidos()) {
-            IServicio r = new Recarga((Operadora) cmbOperadora.getValue(), txtNumero.getText(), obtenerTipo(), Integer.parseInt(txtValor.getText()), Validacion.validarPrecioPositivoDouble(txtComision.getText()));
-            sistema.getTransaccionActual().añadirServicio(r);
+            IServicio r = new Recarga((Operadora) cmbOperadora.getValue(), txtNumero.getText(), 
+                    obtenerTipo(), Integer.parseInt(txtValor.getText()), Validacion.validarPrecioPositivoDouble(txtComision.getText()));
+            sistema.getTransaccionActual().addServicio(r);
             volverMenu(ev);
         } else {
             if (Validacion.validarNumeroDigitos(txtNumero.getText(), 10, true) == null) {

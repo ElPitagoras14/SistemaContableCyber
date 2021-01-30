@@ -5,6 +5,7 @@
  */
 package Main;
 
+import System.Sistema;
 import java.io.File;
 import java.io.IOException;
 import javafx.application.Application;
@@ -28,6 +29,11 @@ public class App extends Application {
         scene = new Scene(loadFXML("Menu"));
         stage.setScene(scene);
         stage.show();
+    }
+    
+    @Override
+    public void stop() {
+        Sistema.getSistema().salvarResumenes();
     }
     
     public static void main(String[] args) {

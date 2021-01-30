@@ -10,14 +10,12 @@ import System.Sistema;
 import System.Transaccion;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -87,8 +85,8 @@ public class MenuController implements Initializable {
     }
     
     @FXML
-    private void resumenHistorico(MouseEvent ev) {
-        sistema.salvarResumenes();
+    private void resumenHistorico(MouseEvent ev) throws IOException {
+        App.cambiarEscena("ResumenFecha", ev);
     }
 
 }

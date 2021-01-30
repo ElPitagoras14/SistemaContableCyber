@@ -5,15 +5,19 @@
  */
 package System;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeParseException;
+
 /**
  *
  * @author El Pitagoras
  */
 public class Validacion {
 
-    public static String validarNumeroDigitos(String numero, int digitos, boolean opcional) {
+    public static String validarNumeroDigitos(String numero, int digitos, boolean obligatorio) {
         try {
-            if (opcional && numero.trim().equals("")) {
+            if (obligatorio && numero.trim().equals("")) {
                 return "SIN DATOS";
             }
             int numeroTmp = Integer.parseInt(numero);
@@ -59,5 +63,21 @@ public class Validacion {
 
         }
         return 0;
+    }
+    
+    public static LocalDate validarFecha(String valor) {
+        try {
+            String[] partes = valor.split("/");
+            StringBuilder sb = new StringBuilder();
+            sb.append(partes[2]);
+            sb.append("-");
+            sb.append(partes[1]);
+            sb.append("-");
+            sb.append(partes[0]);
+            return LocalDate.parse(sb.toString());
+        } catch (DateTimeParseException ex) {
+            
+        }
+        return null;
     }
 }

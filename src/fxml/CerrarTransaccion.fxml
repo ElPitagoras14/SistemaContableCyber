@@ -14,12 +14,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#logicaPantalla" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.CerrarTransaccionController">
    <children>
-      <Button fx:id="btnConfirmar" layoutX="643.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#confirmar" text="Confirmar">
+      <Button fx:id="btnConfirmar" layoutX="674.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#confirmar" text="Confirmar">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnAtras" layoutX="552.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#retroceder" text="Atras">
+      <Button fx:id="btnAtras" layoutX="583.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#retroceder" text="Atras">
          <font>
             <Font size="14.0" />
          </font>
@@ -29,24 +29,24 @@
             <Font name="Arial Bold" size="36.0" />
          </font>
       </Label>
-      <TableView fx:id="tablaPrincipal" layoutX="43.0" layoutY="207.0" onKeyReleased="#eliminarFila" prefHeight="202.0" prefWidth="682.0">
+      <TableView fx:id="tablaPrincipal" layoutX="43.0" layoutY="207.0" onKeyReleased="#eliminarFila" prefHeight="202.0" prefWidth="713.0">
         <columns>
-          <TableColumn fx:id="colServicio" editable="false" prefWidth="75.0" sortable="false" text="Servicio" />
-          <TableColumn fx:id="colTipo" editable="false" prefWidth="137.0" sortable="false" text="Tipo" />
-            <TableColumn fx:id="colPrecio" editable="false" prefWidth="71.0" sortable="false" text="Precio" />
-            <TableColumn fx:id="colComision" editable="false" prefWidth="75.0" sortable="false" text="Comision" />
-            <TableColumn fx:id="colTotal" editable="false" prefWidth="75.0" sortable="false" text="Total" />
+          <TableColumn fx:id="colServicio" editable="false" minWidth="30.0" prefWidth="-1.0" sortable="false" text="Servicio" />
+          <TableColumn fx:id="colTipo" editable="false" minWidth="160.0" prefWidth="190.66665649414062" sortable="false" text="Tipo" />
+            <TableColumn fx:id="colPrecio" editable="false" minWidth="20.0" prefWidth="261.3332824707031" sortable="false" text="Precio" />
+            <TableColumn fx:id="colComision" editable="false" minWidth="20.0" prefWidth="10.66668701171875" sortable="false" text="Comision" />
+            <TableColumn fx:id="colTotal" editable="false" minWidth="20.0" prefWidth="-1.0" sortable="false" text="Total" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TextField fx:id="txtValorTotal" alignment="CENTER_RIGHT" editable="false" layoutX="595.0" layoutY="420.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="130.0" promptText="0.00">
+      <TextField fx:id="txtValorTotal" alignment="CENTER_RIGHT" editable="false" layoutX="626.0" layoutY="420.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="130.0" promptText="0.00">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <Label layoutX="484.0" layoutY="425.0" text="Valor Total">
+      <Label layoutX="515.0" layoutY="425.0" text="Valor Total">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -89,27 +89,27 @@
             </TextField>
          </children>
       </GridPane>
-      <Label layoutX="498.0" layoutY="105.0" text="Paga Con">
+      <Label layoutX="529.0" layoutY="105.0" text="Paga Con">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtPago" alignment="CENTER_RIGHT" layoutX="595.0" layoutY="100.0" nodeOrientation="LEFT_TO_RIGHT" onKeyReleased="#txtActualizarDatos" prefHeight="25.0" prefWidth="130.0" promptText="0.00">
+      <TextField fx:id="txtPago" alignment="CENTER_RIGHT" layoutX="626.0" layoutY="100.0" nodeOrientation="LEFT_TO_RIGHT" onKeyReleased="#txtActualizarDatos" prefHeight="25.0" prefWidth="130.0" promptText="0.00">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <Label layoutX="521.0" layoutY="470.0" text="Vuelto">
+      <Label layoutX="552.0" layoutY="470.0" text="Vuelto">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtVuelto" alignment="CENTER_RIGHT" editable="false" layoutX="595.0" layoutY="465.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="130.0" promptText="0.00">
+      <TextField fx:id="txtVuelto" alignment="CENTER_RIGHT" editable="false" layoutX="626.0" layoutY="465.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="130.0" promptText="0.00">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <Button fx:id="btnEliminar" layoutX="498.0" layoutY="149.0" mnemonicParsing="false" onMouseClicked="#eliminarFilaBtn" prefHeight="30.0" prefWidth="130.0" text="Eliminar Servicio">
+      <Button fx:id="btnEliminar" layoutX="529.0" layoutY="149.0" mnemonicParsing="false" onMouseClicked="#eliminarFilaBtn" prefHeight="30.0" prefWidth="130.0" text="Eliminar Servicio">
          <font>
             <Font size="14.0" />
          </font>

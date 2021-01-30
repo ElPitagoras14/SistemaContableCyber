@@ -132,7 +132,7 @@ public class VentaProductosController implements Initializable {
 
     private void crearServicio(Event event) throws IOException {
         IServicio vp = new VentaProducto((LinkedList<ProductoFisico>) tablaPrincipal.getItems());
-        sistema.getTransaccionActual().añadirServicio(vp);
+        sistema.getTransaccionActual().addServicio(vp);
         volverMenu(event);
     }
     

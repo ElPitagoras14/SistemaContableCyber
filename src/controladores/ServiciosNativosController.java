@@ -102,7 +102,7 @@ public class ServiciosNativosController implements Initializable {
     private void crearServicio(Event ev) throws IOException {
         if (parametrosValidos()) {
             IServicio sn = new ServicioNativo((TipoServicioNativo) cmbTipo.getValue(), txtDescripcion.getText(), Validacion.validarPrecioPositivoDouble(txtValor.getText()));
-            sistema.getTransaccionActual().añadirServicio(sn);
+            sistema.getTransaccionActual().addServicio(sn);
             volverMenu(ev);
         } else {
             System.out.println("Ingrese un valor mayor a 0");

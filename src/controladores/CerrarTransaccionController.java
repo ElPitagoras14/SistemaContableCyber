@@ -74,7 +74,7 @@ public class CerrarTransaccionController implements Initializable {
         txtId.setText("No sé que poner aquí");
         txtCliente.setText(sistema.getTransaccionActual().getCliente());
         iniciarTabla();
-        añadirProductos();
+        addServicios();
     }
 
     @FXML
@@ -102,9 +102,7 @@ public class CerrarTransaccionController implements Initializable {
                     volverMenu((Event) ev);
                     break;
                 case ENTER:
-                    if (parametrosValidos()) {
-                        cerrarTransaccion((Event) ev);
-                    }
+                    cerrarTransaccion((Event) ev);
                     break;
             }
         } catch (IOException error) {
@@ -118,7 +116,7 @@ public class CerrarTransaccionController implements Initializable {
             eliminarServicio();
         }
     }
-    
+
     @FXML
     private void eliminarFilaBtn(MouseEvent ev) {
         eliminarServicio();
@@ -130,7 +128,7 @@ public class CerrarTransaccionController implements Initializable {
         tablaPrincipal.getItems().remove(is);
     }
 
-    private void añadirProductos() {
+    private void addServicios() {
         for (IServicio is : sistema.getTransaccionActual().getListaServicios()) {
             tablaPrincipal.getItems().add(is);
         }
@@ -156,18 +154,21 @@ public class CerrarTransaccionController implements Initializable {
     }
 
     private void cerrarTransaccion(Event ev) throws IOException {
-        sistema.terminarTransaccion(sistema.getTransaccionActual());
-        sistema.setTransaccion(null, sistema.getTransaccionActual().getIdTmp() - 1);
-        App.cambiarEscena("Menu", ev);
+        if (parametrosValidos()) {
+            sistema.terminarTransaccion(sistema.getTransaccionActual());
+            sistema.setTransaccion(null, sistema.getTransaccionActual().getIdTmp() - 1);
+            App.cambiarEscena("Menu", ev);
+        }
     }
 
     private boolean parametrosValidos() {
-        return Validacion.validarPrecioDouble(txtVuelto.getText()) > 0;
+        return Validacion.validarPrecioDouble(txtVuelto.getText()) > 0
+                && Validacion.validarPrecioDouble(txtValorTotal.getText()) > 0;
     }
 
     private void actualizarDatos() {
         double pago = Validacion.validarPrecioPositivoDouble(txtPago.getText());
         double total = Validacion.validarPrecioDouble(txtValorTotal.getText());
-        txtVuelto.setText(String.valueOf(pago - total));
+        txtVuelto.setText(String.format("%.2f", pago - total));
     }
 }

@@ -57,38 +57,38 @@
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </Button>
-            <Label fx:id="txtTran1" text="- Sin Cliente" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+            <Label fx:id="txtTran1" text="- Sin Cliente" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
                <GridPane.margin>
-                  <Insets right="10.0" />
+                  <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="txtTran2" text="- Sin Cliente" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <Label fx:id="txtTran2" text="- Sin Cliente" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
                <GridPane.margin>
-                  <Insets right="10.0" />
+                  <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="txtTran3" text="- Sin Cliente" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Label fx:id="txtTran3" text="- Sin Cliente" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
                <GridPane.margin>
-                  <Insets right="10.0" />
+                  <Insets left="10.0" />
                </GridPane.margin>
             </Label>
          </children>
       </GridPane>
-      <Label layoutX="43.0" layoutY="560.0" text="Versión 0.8">
+      <Label layoutX="43.0" layoutY="560.0" text="Versión 1.0">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Button layoutX="58.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#resumenHistorico" text="Historico Resumen">
+      <Button layoutX="58.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#resumenHistorico" text="Histórico Resumen">
          <font>
             <Font size="18.0" />
          </font>

@@ -7,7 +7,6 @@ package controladores;
 
 import Main.App;
 import System.Sistema;
-import System.Validacion;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

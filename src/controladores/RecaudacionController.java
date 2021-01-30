@@ -107,7 +107,7 @@ public class RecaudacionController implements Initializable {
     private void crearServicio(Event ev) throws IOException {
         if(parametrosValidos()) {
             IServicio rd = new Recaudacion((TipoRecaudacion) cmbTipo.getValue(), txtDetalle.getText(), Double.parseDouble(txtValor.getText()));
-            sistema.getTransaccionActual().añadirServicio(rd);
+            sistema.getTransaccionActual().addServicio(rd);
             volverMenu(ev);
         }
     }
