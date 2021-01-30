@@ -6,6 +6,7 @@
 package controladores;
 
 import Main.App;
+import System.Sistema;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,6 +14,9 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -24,26 +28,58 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private Button btnRecarga;
-    
+
     @FXML
     private Button btnServiciosBancarios;
-    
+
     @FXML
     private Button btnServiciosNativos;
-    
+
     @FXML
     private Button btnVender;
-    
+
     @FXML
     private Button btnRecaudacion;
+
+    @FXML
+    private Button btnCerrarTransaccion;
+
+    @FXML
+    private TextField txtValorTotal;
+
+    @FXML
+    private Label txtTransaccion;
+
+    @FXML
+    private Button btnVolver;
+
+    private Sistema sistema;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        sistema = Sistema.getSistema();
+        txtTransaccion.setText("Estás en la transacción " + sistema.getTransaccionActual().getIdTmp());
+        txtValorTotal.setText(String.format("%.2f",sistema.getTransaccionActual().getValorTotal()));
+    }
+
+    @FXML
+    private void logicaPantalla(KeyEvent ev) {
+        try {
+            switch (ev.getCode()) {
+                case ESCAPE:
+                    volverMenu((Event) ev);
+                    break;
+                case ENTER:
+                    cerrarTransaccion((Event) ev);
+                    break;
+            }
+        } catch (IOException error) {
+            System.out.println("error");
+        }
+    }
 
     @FXML
     private void recargas(MouseEvent event) throws IOException {
@@ -53,24 +89,39 @@ public class PrincipalController implements Initializable {
     @FXML
     private void serviciosBancarios(MouseEvent event) throws IOException {
         App.cambiarEscena("ServiciosBancarios", (Event) event);
-
     }
 
     @FXML
     private void serviciosNativos(MouseEvent event) throws IOException {
         App.cambiarEscena("ServiciosNativos", (Event) event);
-
     }
-    
+
     @FXML
-    private void recaudacion(MouseEvent e) throws IOException{
+    private void recaudacion(MouseEvent e) throws IOException {
         App.cambiarEscena("Recaudacion", (Event) e);
-
     }
-    @FXML
-    private void aVender(MouseEvent e) throws IOException{
-        App.cambiarEscena("VentaProductos", (Event) e);
 
+    @FXML
+    private void venderProductos(MouseEvent e) throws IOException {
+        App.cambiarEscena("VentaProductos", (Event) e);
+    }
+
+    @FXML
+    private void atras(MouseEvent ev) throws IOException {
+        volverMenu((Event) ev);
+    }
+
+    @FXML
+    private void terminarTransaccion(MouseEvent ev) throws IOException {
+        cerrarTransaccion((Event) ev);
+    }
+
+    private void volverMenu(Event ev) throws IOException {
+        App.cambiarEscena("Menu", ev);
     }
     
+    private void cerrarTransaccion(Event ev) throws IOException {
+        App.cambiarEscena("CerrarTransaccion", ev);
+    }
+
 }

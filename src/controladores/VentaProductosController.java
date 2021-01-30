@@ -11,7 +11,7 @@ import Services.Producto.ProductoFisico;
 import Services.Producto.ProductoPortada;
 import Services.Producto.VentaProducto;
 import System.Sistema;
-import System.Validaciones;
+import System.Validacion;
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
@@ -45,7 +45,7 @@ public class VentaProductosController implements Initializable {
     @FXML
     private TextField txtId;
     @FXML
-    private TableView tablaPrincipal;
+    private TableView<ProductoFisico> tablaPrincipal;
     @FXML
     private TableColumn<ProductoFisico, String> colId;
     @FXML
@@ -71,12 +71,7 @@ public class VentaProductosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         sistema = Sistema.getSistema();
         total = 0;
-        colId.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
-        colPrecio.setCellValueFactory(new PropertyValueFactory<>("ValorUnidad"));
-        colCantidad.setCellValueFactory(new PropertyValueFactory<>("Cantidad"));
-        colTotal.setCellValueFactory(new PropertyValueFactory<>("Total"));
-        tablaPrincipal.setItems(FXCollections.observableArrayList());
+        iniciarTabla();
     }
     
     @FXML
@@ -122,7 +117,7 @@ public class VentaProductosController implements Initializable {
     }
     
     private void actualizarDatos() {
-        txtValorTotal.setText(String.valueOf(total));
+        txtValorTotal.setText(String.format("%.2f", total));
     }
 
     private void volverMenu(Event e) throws IOException {
@@ -130,15 +125,29 @@ public class VentaProductosController implements Initializable {
     }
 
     private boolean parametrosValidos() {
-        int cantidad = Validaciones.validarPrecioInt(txtCantidad.getText());
+        int cantidad = Validacion.validarPrecioPositivoInt(txtCantidad.getText());
         ProductoPortada prod = sistema.obtenerProducto(txtId.getText());
         return cantidad > 0 && prod != null;
     }
 
     private void crearServicio(Event event) throws IOException {
         IServicio vp = new VentaProducto((LinkedList<ProductoFisico>) tablaPrincipal.getItems());
-        sistema.getTransaccionActual().añadirServicio(vp);
+        sistema.getTransaccionActual().addServicio(vp);
         volverMenu(event);
+    }
+    
+    private void iniciarTabla() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        colId.setStyle("-fx-alignment: CENTER;");
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+        colNombre.setStyle("-fx-alignment: CENTER;");
+        colPrecio.setCellValueFactory(new PropertyValueFactory<>("ValorUnidad"));
+        colPrecio.setStyle("-fx-alignment: CENTER-RIGHT;");
+        colCantidad.setCellValueFactory(new PropertyValueFactory<>("Cantidad"));
+        colCantidad.setStyle("-fx-alignment: CENTER-RIGHT;");
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("Total"));
+        colTotal.setStyle("-fx-alignment: CENTER-RIGHT;");
+        tablaPrincipal.setItems(FXCollections.observableArrayList());
     }
 
 }

@@ -15,7 +15,7 @@ import Services.Banco.Retiro;
 import Services.Banco.ServicioBancario;
 import Services.IServicio;
 import System.Sistema;
-import System.Validaciones;
+import System.Validacion;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -162,18 +162,18 @@ public class ServiciosBancariosController implements Initializable {
         if (parametrosValidos()) {
             switch (obtenerTipo()) {
                 case DEPOSITO:
-                    IServicio dp = new Deposito(txtNumeroCuenta.getText(),(Banco) cmbBancos.getValue(),(TipoCuenta) cmbTipoCuenta.getValue(), Double.parseDouble(txtValor.getText()), Double.parseDouble(txtComision.getText()));
-                    sistema.getTransaccionActual().añadirServicio(dp);
+                    IServicio dp = new Deposito(txtNumeroCuenta.getText(),(Banco) cmbBancos.getValue(),(TipoCuenta) cmbTipoCuenta.getValue(), Validacion.validarPrecioPositivoDouble(txtValor.getText()), Validacion.validarPrecioPositivoDouble(txtComision.getText()));
+                    sistema.getTransaccionActual().addServicio(dp);
                     volverMenu(ev);
                     break;
                 case RETIRO:
-                    IServicio rt = new Retiro((Banco) cmbBancos.getValue(), (TipoCuenta) cmbTipoCuenta.getValue(), Double.parseDouble(txtValor.getText()), Double.parseDouble(txtComision.getText()));
-                    sistema.getTransaccionActual().añadirServicio(rt);
+                    IServicio rt = new Retiro((Banco) cmbBancos.getValue(), (TipoCuenta) cmbTipoCuenta.getValue(), Validacion.validarPrecioPositivoDouble(txtValor.getText()), Validacion.validarPrecioPositivoDouble(txtComision.getText()));
+                    sistema.getTransaccionActual().addServicio(rt);
                     volverMenu(ev);
                     break;
                 case OTROS:
-                    IServicio ot = new BancoOtros((Banco) cmbBancos.getValue(), Double.parseDouble(txtValor.getText()));
-                    sistema.getTransaccionActual().añadirServicio(ot);
+                    IServicio ot = new BancoOtros((Banco) cmbBancos.getValue(), Validacion.validarPrecioPositivoDouble(txtValor.getText()));
+                    sistema.getTransaccionActual().addServicio(ot);
                     volverMenu(ev);
             }
         }
@@ -198,30 +198,30 @@ public class ServiciosBancariosController implements Initializable {
             case DEPOSITO:
                 banco = cmbBancos.getValue() != null;
                 tipo = cmbTipoCuenta.getValue() != null;
-                cta = Validaciones.validarNumeroDigitos(txtNumeroCuenta.getText(), 10, true) != null
-                        || Validaciones.validarNumeroDigitos(txtNumeroCuenta.getText(), 8, true) != null;
-                valor = Validaciones.validarPrecioDouble(txtValor.getText());
+                cta = Validacion.validarNumeroDigitos(txtNumeroCuenta.getText(), 10, true) != null
+                        || Validacion.validarNumeroDigitos(txtNumeroCuenta.getText(), 8, true) != null;
+                valor = Validacion.validarPrecioPositivoDouble(txtValor.getText());
                 return banco && tipo && cta && valor > 0;
             case RETIRO:
                 banco = cmbBancos.getValue() != null;
                 tipo = cmbTipoCuenta.getValue() != null;
-                valor = Validaciones.validarPrecioDouble(txtValor.getText());
+                valor = Validacion.validarPrecioPositivoDouble(txtValor.getText());
                 return banco && tipo && valor > 0;
             case OTROS:
-                return Validaciones.validarPrecioDouble(txtValor.getText()) > 0;
+                return Validacion.validarPrecioPositivoDouble(txtValor.getText()) > 0;
         }
         return false;
     }
 
     private void actualizarDatos() {
-        double valor = Validaciones.validarPrecioDouble(txtValor.getText());
-        if (valor > 0 && cmbBancos.getValue() != null) {
+        double valor = Validacion.validarPrecioPositivoDouble(txtValor.getText());
+        if (valor >= 0 && cmbBancos.getValue() != null) {
             double comision = ServicioBancario.getComision(valor);
             if (btnOtros.isSelected()) {
                 comision = 0;
             }
-            txtComision.setText(String.valueOf(comision));
-            txtValorTotal.setText(String.valueOf(valor + comision));
+            txtComision.setText(String.format("%.2f", comision));
+            txtValorTotal.setText(String.format("%.2f", valor + comision));
         }
     }
 

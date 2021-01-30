@@ -6,6 +6,7 @@
 package System;
 
 import Services.IServicio;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.LinkedList;
@@ -14,13 +15,14 @@ import java.util.LinkedList;
  *
  * @author El Pitagoras
  */
-public class Transaccion {
-    private static int ultimoId;
+public class Transaccion implements Serializable{
     private LinkedList<IServicio> listaServicios;
     private String cliente;
     private double valorTotal;
+    private int idTmp;
     
-    public Transaccion() {
+    public Transaccion(int idTmp) {
+        this.idTmp = idTmp;
         listaServicios = new LinkedList<>();
         cliente = "SIN DATOS";
     }
@@ -30,7 +32,7 @@ public class Transaccion {
         this.cliente = cliente;
     }
     
-    public void añadirServicio(IServicio serv) {
+    public void addServicio(IServicio serv) {
         listaServicios.add(serv);
         añadirCosto();
     }
@@ -47,11 +49,6 @@ public class Transaccion {
         }
     }
     
-    public static String obtenerUltimoId() {
-        ultimoId++;
-        return String.format("%010d", ultimoId);
-    }
-    
     private void añadirCosto() {
         valorTotal += listaServicios.getLast().getTotal();
     }
@@ -61,6 +58,7 @@ public class Transaccion {
         for (IServicio is: listaServicios) {
             sb.append("\t");
             sb.append(is.getResumen());
+            sb.append("\n");
         }
         return sb.toString();
     }
@@ -68,13 +66,23 @@ public class Transaccion {
     public LinkedList<IServicio> getListaServicios() {
         return listaServicios;
     }
+
+    public int getIdTmp() {
+        return idTmp;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
     
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Transaccion ");
-        sb.append(Transaccion.obtenerUltimoId());
-        sb.append(" Fecha: ");
+        sb.append("Transaccion Fecha: ");
         sb.append(LocalDate.now().toString());
         sb.append(" Hora: ");
         sb.append(LocalTime.now().toString());
@@ -82,7 +90,8 @@ public class Transaccion {
         sb.append(cliente);
         sb.append("\n");
         sb.append(resumenTransacciones());
-        sb.append(String.format("%-30s $%6.2f", "Total", valorTotal));
+        sb.append("\t");
+        sb.append(String.format("%-40s $%6.2f", "Total", valorTotal));
         return sb.toString();
     }
 }

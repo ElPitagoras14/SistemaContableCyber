@@ -5,11 +5,15 @@
  */
 package Services;
 
+import java.io.Serializable;
+
 /**
  *
  * @author El Pitagoras
  */
-public interface IServicio {
+public interface IServicio extends Serializable {
+    
+    public static final long serialVersionUID = 123453L;
 
     String getServicio();
 
@@ -24,7 +28,7 @@ public interface IServicio {
         sb.append(getServicio());
         sb.append(" ");
         sb.append(getCaracteristica());
-        return String.format("%-30s $%6.2f", sb.toString(), (getValor() + getComision()));
+        return String.format("%-40s $%6.2f", sb.toString(), (getValor() + getComision()));
     }
 
     default double getTotal() {
